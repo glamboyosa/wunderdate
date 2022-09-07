@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "devDependencies": {
+    "prettier-plugin-prisma": "^4.2.0",
     "prisma": "^4.3.1"
   },
   "dependencies": {
