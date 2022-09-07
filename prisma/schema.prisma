@@ -24,10 +24,17 @@ model Application {
   id        Int        @id @default(autoincrement())
   role      Position[]
   message   String?
+  status    Status     @default(pending)
   comments  Comment[]
   users     User[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+}
+
+enum Status {
+  pending
+  accepted
+  rejected
 }
 
 model Position {
