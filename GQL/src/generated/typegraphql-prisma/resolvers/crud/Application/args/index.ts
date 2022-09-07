@@ -1,0 +1,12 @@
+export { AggregateApplicationArgs } from "./AggregateApplicationArgs";
+export { CreateManyApplicationArgs } from "./CreateManyApplicationArgs";
+export { CreateOneApplicationArgs } from "./CreateOneApplicationArgs";
+export { DeleteManyApplicationArgs } from "./DeleteManyApplicationArgs";
+export { DeleteOneApplicationArgs } from "./DeleteOneApplicationArgs";
+export { FindFirstApplicationArgs } from "./FindFirstApplicationArgs";
+export { FindManyApplicationArgs } from "./FindManyApplicationArgs";
+export { FindUniqueApplicationArgs } from "./FindUniqueApplicationArgs";
+export { GroupByApplicationArgs } from "./GroupByApplicationArgs";
+export { UpdateManyApplicationArgs } from "./UpdateManyApplicationArgs";
+export { UpdateOneApplicationArgs } from "./UpdateOneApplicationArgs";
+export { UpsertOneApplicationArgs } from "./UpsertOneApplicationArgs";

@@ -7,7 +7,8 @@
   },
   "devDependencies": {
     "prettier-plugin-prisma": "^4.2.0",
-    "prisma": "^4.3.1"
+    "prisma": "^4.3.1",
+    "typegraphql-prisma": "^0.21.4"
   },
   "dependencies": {
     "@prisma/client": "^4.3.1"
