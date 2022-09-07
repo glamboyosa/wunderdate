@@ -4,17 +4,11 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PositionCreateWithoutApplicationInput } from "../inputs/PositionCreateWithoutApplicationInput";
 import { PositionUpdateWithoutApplicationInput } from "../inputs/PositionUpdateWithoutApplicationInput";
-import { PositionWhereUniqueInput } from "../inputs/PositionWhereUniqueInput";
 
-@TypeGraphQL.InputType("PositionUpsertWithWhereUniqueWithoutApplicationInput", {
+@TypeGraphQL.InputType("PositionUpsertWithoutApplicationInput", {
   isAbstract: true
 })
-export class PositionUpsertWithWhereUniqueWithoutApplicationInput {
-  @TypeGraphQL.Field(_type => PositionWhereUniqueInput, {
-    nullable: false
-  })
-  where!: PositionWhereUniqueInput;
-
+export class PositionUpsertWithoutApplicationInput {
   @TypeGraphQL.Field(_type => PositionUpdateWithoutApplicationInput, {
     nullable: false
   })

@@ -11,4 +11,9 @@ export class ApplicationWhereUniqueInput {
     nullable: true
   })
   id?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  roleId?: number | undefined;
 }

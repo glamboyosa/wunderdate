@@ -35,5 +35,5 @@ export class FindManyApplicationArgs {
   @TypeGraphQL.Field(_type => [ApplicationScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "message" | "status" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "roleId" | "message" | "status" | "createdAt" | "updatedAt"> | undefined;
 }

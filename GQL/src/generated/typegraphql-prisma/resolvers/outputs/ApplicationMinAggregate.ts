@@ -13,6 +13,11 @@ export class ApplicationMinAggregate {
   })
   id!: number | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  roleId!: number | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

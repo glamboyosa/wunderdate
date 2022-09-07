@@ -4,22 +4,17 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PositionWhereInput } from "../inputs/PositionWhereInput";
 
-@TypeGraphQL.InputType("PositionListRelationFilter", {
+@TypeGraphQL.InputType("PositionRelationFilter", {
   isAbstract: true
 })
-export class PositionListRelationFilter {
+export class PositionRelationFilter {
   @TypeGraphQL.Field(_type => PositionWhereInput, {
     nullable: true
   })
-  every?: PositionWhereInput | undefined;
+  is?: PositionWhereInput | undefined;
 
   @TypeGraphQL.Field(_type => PositionWhereInput, {
     nullable: true
   })
-  some?: PositionWhereInput | undefined;
-
-  @TypeGraphQL.Field(_type => PositionWhereInput, {
-    nullable: true
-  })
-  none?: PositionWhereInput | undefined;
+  isNot?: PositionWhereInput | undefined;
 }

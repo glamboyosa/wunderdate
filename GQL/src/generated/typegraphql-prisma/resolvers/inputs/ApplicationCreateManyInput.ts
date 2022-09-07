@@ -13,6 +13,11 @@ export class ApplicationCreateManyInput {
   })
   id?: number | undefined;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  roleId!: number;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

@@ -11,9 +11,4 @@ export class PositionAvgAggregate {
     nullable: true
   })
   id!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
-    nullable: true
-  })
-  applicationId!: number | null;
 }

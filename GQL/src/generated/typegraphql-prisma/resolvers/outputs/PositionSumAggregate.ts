@@ -11,9 +11,4 @@ export class PositionSumAggregate {
     nullable: true
   })
   id!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  applicationId!: number | null;
 }

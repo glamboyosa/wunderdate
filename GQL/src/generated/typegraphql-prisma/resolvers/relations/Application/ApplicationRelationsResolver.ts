@@ -4,21 +4,20 @@ import { Comment } from "../../../models/Comment";
 import { Position } from "../../../models/Position";
 import { User } from "../../../models/User";
 import { ApplicationCommentsArgs } from "./args/ApplicationCommentsArgs";
-import { ApplicationRoleArgs } from "./args/ApplicationRoleArgs";
 import { ApplicationUsersArgs } from "./args/ApplicationUsersArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => Application)
 export class ApplicationRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [Position], {
+  @TypeGraphQL.FieldResolver(_type => Position, {
     nullable: false
   })
-  async role(@TypeGraphQL.Root() application: Application, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: ApplicationRoleArgs): Promise<Position[]> {
+  async role(@TypeGraphQL.Root() application: Application, @TypeGraphQL.Ctx() ctx: any): Promise<Position> {
     return getPrismaFromContext(ctx).application.findUnique({
       where: {
         id: application.id,
       },
-    }).role(args);
+    }).role({});
   }
 
   @TypeGraphQL.FieldResolver(_type => [Comment], {

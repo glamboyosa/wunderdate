@@ -20,7 +20,7 @@ export class GroupByPositionArgs {
   @TypeGraphQL.Field(_type => [PositionScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "name" | "description" | "open" | "applicationId" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "name" | "description" | "open" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => PositionScalarWhereWithAggregatesInput, {
     nullable: true

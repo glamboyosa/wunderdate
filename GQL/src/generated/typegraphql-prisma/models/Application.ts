@@ -1,50 +1,55 @@
-import * as TypeGraphQL from 'type-graphql'
-import * as GraphQLScalars from 'graphql-scalars'
-import { Prisma } from '@prisma/client'
-import { DecimalJSScalar } from '../scalars'
-import { Comment } from '../models/Comment'
-import { Position } from '../models/Position'
-import { User } from '../models/User'
-import { Status } from '../enums/Status'
-import { ApplicationCount } from '../resolvers/outputs/ApplicationCount'
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../scalars";
+import { Comment } from "../models/Comment";
+import { Position } from "../models/Position";
+import { User } from "../models/User";
+import { Status } from "../enums/Status";
+import { ApplicationCount } from "../resolvers/outputs/ApplicationCount";
 
-@TypeGraphQL.ObjectType('Application', {
-  isAbstract: true,
+@TypeGraphQL.ObjectType("Application", {
+  isAbstract: true
 })
 export class Application {
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
-  id!: number
+  id!: number;
 
-  role?: Position[]
+  role?: Position;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
-  message?: string | null
+  roleId!: number;
 
-  @TypeGraphQL.Field((_type) => Status, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
-  status!: 'pending' | 'accepted' | 'rejected'
+  message?: string | null;
 
-  comments?: Comment[]
-
-  users?: User[]
-
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Status, {
+    nullable: false
   })
-  createdAt!: Date
+  status!: "pending" | "accepted" | "rejected";
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
-  })
-  updatedAt!: Date
+  comments?: Comment[];
 
-  @TypeGraphQL.Field((_type) => ApplicationCount, {
-    nullable: true,
+  users?: User[];
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
-  _count?: ApplicationCount | null
+  createdAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => ApplicationCount, {
+    nullable: true
+  })
+  _count?: ApplicationCount | null;
 }

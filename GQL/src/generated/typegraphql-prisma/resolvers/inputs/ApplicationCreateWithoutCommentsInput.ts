@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PositionCreateNestedManyWithoutApplicationInput } from "../inputs/PositionCreateNestedManyWithoutApplicationInput";
+import { PositionCreateNestedOneWithoutApplicationInput } from "../inputs/PositionCreateNestedOneWithoutApplicationInput";
 import { UserCreateNestedManyWithoutApplicationsInput } from "../inputs/UserCreateNestedManyWithoutApplicationsInput";
 import { Status } from "../../enums/Status";
 
@@ -10,10 +10,10 @@ import { Status } from "../../enums/Status";
   isAbstract: true
 })
 export class ApplicationCreateWithoutCommentsInput {
-  @TypeGraphQL.Field(_type => PositionCreateNestedManyWithoutApplicationInput, {
-    nullable: true
+  @TypeGraphQL.Field(_type => PositionCreateNestedOneWithoutApplicationInput, {
+    nullable: false
   })
-  role?: PositionCreateNestedManyWithoutApplicationInput | undefined;
+  role!: PositionCreateNestedOneWithoutApplicationInput;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true

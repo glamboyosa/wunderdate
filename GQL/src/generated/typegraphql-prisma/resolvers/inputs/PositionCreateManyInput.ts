@@ -27,11 +27,6 @@ export class PositionCreateManyInput {
   })
   open!: boolean;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  applicationId?: number | undefined;
-
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

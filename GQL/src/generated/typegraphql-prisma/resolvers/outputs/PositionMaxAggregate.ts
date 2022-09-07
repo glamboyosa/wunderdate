@@ -27,11 +27,6 @@ export class PositionMaxAggregate {
   })
   open!: boolean | null;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  applicationId!: number | null;
-
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

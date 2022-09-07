@@ -20,7 +20,7 @@ export class GroupByApplicationArgs {
   @TypeGraphQL.Field(_type => [ApplicationScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "message" | "status" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "roleId" | "message" | "status" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => ApplicationScalarWhereWithAggregatesInput, {
     nullable: true

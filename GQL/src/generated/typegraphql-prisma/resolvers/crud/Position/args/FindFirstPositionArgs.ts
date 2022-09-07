@@ -35,5 +35,5 @@ export class FindFirstPositionArgs {
   @TypeGraphQL.Field(_type => [PositionScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "name" | "description" | "open" | "applicationId" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "name" | "description" | "open" | "createdAt" | "updatedAt"> | undefined;
 }

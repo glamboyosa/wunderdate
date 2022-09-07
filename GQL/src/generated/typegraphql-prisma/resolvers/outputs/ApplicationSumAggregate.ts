@@ -11,4 +11,9 @@ export class ApplicationSumAggregate {
     nullable: true
   })
   id!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  roleId!: number | null;
 }

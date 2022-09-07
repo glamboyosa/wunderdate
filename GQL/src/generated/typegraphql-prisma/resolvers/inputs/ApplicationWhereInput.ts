@@ -6,7 +6,7 @@ import { CommentListRelationFilter } from "../inputs/CommentListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumStatusFilter } from "../inputs/EnumStatusFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { PositionListRelationFilter } from "../inputs/PositionListRelationFilter";
+import { PositionRelationFilter } from "../inputs/PositionRelationFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { UserListRelationFilter } from "../inputs/UserListRelationFilter";
 
@@ -34,10 +34,15 @@ export class ApplicationWhereInput {
   })
   id?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PositionListRelationFilter, {
+  @TypeGraphQL.Field(_type => PositionRelationFilter, {
     nullable: true
   })
-  role?: PositionListRelationFilter | undefined;
+  role?: PositionRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  roleId?: IntFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true

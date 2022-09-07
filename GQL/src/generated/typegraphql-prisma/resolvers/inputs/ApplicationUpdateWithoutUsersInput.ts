@@ -6,16 +6,16 @@ import { CommentUpdateManyWithoutApplicationNestedInput } from "../inputs/Commen
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumStatusFieldUpdateOperationsInput } from "../inputs/EnumStatusFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { PositionUpdateManyWithoutApplicationNestedInput } from "../inputs/PositionUpdateManyWithoutApplicationNestedInput";
+import { PositionUpdateOneRequiredWithoutApplicationNestedInput } from "../inputs/PositionUpdateOneRequiredWithoutApplicationNestedInput";
 
 @TypeGraphQL.InputType("ApplicationUpdateWithoutUsersInput", {
   isAbstract: true
 })
 export class ApplicationUpdateWithoutUsersInput {
-  @TypeGraphQL.Field(_type => PositionUpdateManyWithoutApplicationNestedInput, {
+  @TypeGraphQL.Field(_type => PositionUpdateOneRequiredWithoutApplicationNestedInput, {
     nullable: true
   })
-  role?: PositionUpdateManyWithoutApplicationNestedInput | undefined;
+  role?: PositionUpdateOneRequiredWithoutApplicationNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true

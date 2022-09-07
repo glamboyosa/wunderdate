@@ -31,6 +31,11 @@ export class ApplicationScalarWhereInput {
   })
   id?: IntFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  roleId?: IntFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })

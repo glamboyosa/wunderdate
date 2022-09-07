@@ -16,6 +16,11 @@ export class ApplicationCountOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  roleId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   message?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

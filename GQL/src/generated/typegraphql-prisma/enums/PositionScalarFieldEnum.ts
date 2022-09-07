@@ -5,7 +5,6 @@ export enum PositionScalarFieldEnum {
   name = "name",
   description = "description",
   open = "open",
-  applicationId = "applicationId",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

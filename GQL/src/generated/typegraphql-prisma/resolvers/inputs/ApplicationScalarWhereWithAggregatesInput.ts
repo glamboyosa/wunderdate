@@ -31,6 +31,11 @@ export class ApplicationScalarWhereWithAggregatesInput {
   })
   id?: IntWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
+  })
+  roleId?: IntWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })

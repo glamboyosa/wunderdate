@@ -11,4 +11,9 @@ export class ApplicationAvgAggregate {
     nullable: true
   })
   id!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  roleId!: number | null;
 }

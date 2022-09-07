@@ -32,11 +32,6 @@ export class PositionGroupBy {
   })
   open!: boolean;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  applicationId!: number | null;
-
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })

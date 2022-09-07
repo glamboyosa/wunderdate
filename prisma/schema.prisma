@@ -26,14 +26,15 @@ model User {
 }
 
 model Application {
-  id        Int        @id @default(autoincrement())
-  role      Position[]
+  id        Int       @id @default(autoincrement())
+  role      Position  @relation(fields: [roleId], references: [id])
+  roleId    Int       @unique
   message   String?
-  status    Status     @default(pending)
+  status    Status    @default(pending)
   comments  Comment[]
   users     User[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum Status {
@@ -43,14 +44,13 @@ enum Status {
 }
 
 model Position {
-  id            Int          @id @default(autoincrement())
-  name          String
-  description   String?
-  open          Boolean
-  application   Application? @relation(fields: [applicationId], references: [id])
-  applicationId Int?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String?
+  open        Boolean
+  application Application?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model Comment {
