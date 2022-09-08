@@ -4,13 +4,30 @@ import { context } from '../utils/types'
 @Resolver()
 export class CommentsResolver {
   @Query(() => [Comment])
-  async comments(@Ctx() { prisma }: context) {
-    return await prisma.comment.findMany()
+  async getCommentsForApplication(
+    @Arg('ApplicationId') applicationId: number,
+      @Ctx() { prisma }: context
+  ) {
+      return await prisma.comment.findMany({
+          where: {
+            applicationId
+        },
+    })
   }
 
-  @Mutation(() => Boolean)
-  createComment(@Arg('CommentInput') data: CommentCreateInput): Boolean {
-    console.log(data)
-    return true
+  @Mutation(() => Comment)
+  async createComment(
+    @Arg('CommentInput') inputData: CommentCreateInput,
+    @Arg('ApplicationId') applicationId: number,
+    @Ctx() { prisma }: context,
+  ): Promise<Comment> {
+    const data = {
+      ...inputData,
+      application: {
+        connect: [{ id: applicationId }],
+      },
+    }
+    const comment = await prisma.comment.create({ data })
+    return comment
   }
 }
