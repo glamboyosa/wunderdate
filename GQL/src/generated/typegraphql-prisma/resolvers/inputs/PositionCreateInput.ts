@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationCreateNestedOneWithoutRoleInput } from "../inputs/ApplicationCreateNestedOneWithoutRoleInput";
+import { ApplicationCreateNestedManyWithoutRoleInput } from "../inputs/ApplicationCreateNestedManyWithoutRoleInput";
 
 @TypeGraphQL.InputType("PositionCreateInput", {
   isAbstract: true
@@ -23,10 +23,10 @@ export class PositionCreateInput {
   })
   open!: boolean;
 
-  @TypeGraphQL.Field(_type => ApplicationCreateNestedOneWithoutRoleInput, {
+  @TypeGraphQL.Field(_type => ApplicationCreateNestedManyWithoutRoleInput, {
     nullable: true
   })
-  application?: ApplicationCreateNestedOneWithoutRoleInput | undefined;
+  application?: ApplicationCreateNestedManyWithoutRoleInput | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

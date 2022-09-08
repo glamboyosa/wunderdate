@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 // this file seeds the DB with some data.
 // it creates a few users, applications, positions and comments
 import { faker } from '@faker-js/faker'
-const prisma = new PrismaClient()
+
 async function main() {
   const users = [
     {
@@ -218,23 +218,16 @@ async function main() {
     },
   ]
   try {
-    users.every(async (user) => {
+    users.forEach(async (user) => {
+      const prisma = new PrismaClient()
       await prisma.user.create({
-          data: user,   
+        data: user,
       })
+      await prisma.$disconnect()
       console.log('Successfully seeded DB 😄')
     })
   } catch (e) {
     console.error(`something went wrong 🙁 ${JSON.stringify(e)}`)
   }
 }
-
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+main().then().catch()

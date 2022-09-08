@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Application } from "../models/Application";
+import { PositionCount } from "../resolvers/outputs/PositionCount";
 
 @TypeGraphQL.ObjectType("Position", {
   isAbstract: true
@@ -28,7 +29,7 @@ export class Position {
   })
   open!: boolean;
 
-  application?: Application | null;
+  application?: Application[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
@@ -39,4 +40,9 @@ export class Position {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => PositionCount, {
+    nullable: true
+  })
+  _count?: PositionCount | null;
 }

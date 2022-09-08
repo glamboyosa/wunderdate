@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationRelationFilter } from "../inputs/ApplicationRelationFilter";
+import { ApplicationListRelationFilter } from "../inputs/ApplicationListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
@@ -48,10 +48,10 @@ export class PositionWhereInput {
   })
   open?: BoolFilter | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationRelationFilter, {
+  @TypeGraphQL.Field(_type => ApplicationListRelationFilter, {
     nullable: true
   })
-  application?: ApplicationRelationFilter | undefined;
+  application?: ApplicationListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

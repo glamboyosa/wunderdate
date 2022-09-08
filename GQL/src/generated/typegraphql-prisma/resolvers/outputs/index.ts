@@ -17,6 +17,7 @@ export { CommentMaxAggregate } from "./CommentMaxAggregate";
 export { CommentMinAggregate } from "./CommentMinAggregate";
 export { CommentSumAggregate } from "./CommentSumAggregate";
 export { PositionAvgAggregate } from "./PositionAvgAggregate";
+export { PositionCount } from "./PositionCount";
 export { PositionCountAggregate } from "./PositionCountAggregate";
 export { PositionGroupBy } from "./PositionGroupBy";
 export { PositionMaxAggregate } from "./PositionMaxAggregate";

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "seed:db": "ts-node script.ts",
+    "reset_seed": "npx prisma migrate reset && npm run seed:db",
     "gen": "prisma generate"
   },
   "devDependencies": {

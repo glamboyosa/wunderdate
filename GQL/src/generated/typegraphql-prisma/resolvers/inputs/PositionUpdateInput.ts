@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationUpdateOneWithoutRoleNestedInput } from "../inputs/ApplicationUpdateOneWithoutRoleNestedInput";
+import { ApplicationUpdateManyWithoutRoleNestedInput } from "../inputs/ApplicationUpdateManyWithoutRoleNestedInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
@@ -27,10 +27,10 @@ export class PositionUpdateInput {
   })
   open?: BoolFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationUpdateOneWithoutRoleNestedInput, {
+  @TypeGraphQL.Field(_type => ApplicationUpdateManyWithoutRoleNestedInput, {
     nullable: true
   })
-  application?: ApplicationUpdateOneWithoutRoleNestedInput | undefined;
+  application?: ApplicationUpdateManyWithoutRoleNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true

@@ -4,11 +4,17 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ApplicationCreateWithoutRoleInput } from "../inputs/ApplicationCreateWithoutRoleInput";
 import { ApplicationUpdateWithoutRoleInput } from "../inputs/ApplicationUpdateWithoutRoleInput";
+import { ApplicationWhereUniqueInput } from "../inputs/ApplicationWhereUniqueInput";
 
-@TypeGraphQL.InputType("ApplicationUpsertWithoutRoleInput", {
+@TypeGraphQL.InputType("ApplicationUpsertWithWhereUniqueWithoutRoleInput", {
   isAbstract: true
 })
-export class ApplicationUpsertWithoutRoleInput {
+export class ApplicationUpsertWithWhereUniqueWithoutRoleInput {
+  @TypeGraphQL.Field(_type => ApplicationWhereUniqueInput, {
+    nullable: false
+  })
+  where!: ApplicationWhereUniqueInput;
+
   @TypeGraphQL.Field(_type => ApplicationUpdateWithoutRoleInput, {
     nullable: false
   })
