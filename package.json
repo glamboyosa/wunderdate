@@ -1,7 +1,6 @@
 {
-  "name": "wundergraph-application",
+  "name": "wunderdate",
   "version": "1.0.0",
-  "description": "",
   "scripts": {
     "start": "wunderctl up --debug",
     "generate": "prisma generate",
@@ -12,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
+    "prettier": "^2.7.1",
     "prettier-plugin-prisma": "^4.2.0",
     "prisma": "^4.3.1",
     "ts-node": "^10.9.1",
