@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "api": {
+      "name": "app",
+      "schemaPath": ".wundergraph/generated/wundergraph.api.schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "api": {
+            "introspect": true,
+            "url": "http://localhost:9991/api/main/graphql",
+            "headers": {
+              "user-agent": "WunderGraph Client"
+            }
+          }
+        }
+      }
+    }
+  }
+}
