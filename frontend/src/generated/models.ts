@@ -4,8 +4,17 @@ export interface MissionsInput {
 	find?: spacex_MissionsFind;
 }
 
+export interface ProtectedCreateCommentMutationInput {
+	applicationId: number;
+	commentInput: TGQL_CommentCreateInput;
+}
+
 export interface ProtectedGetApplicationsWithQueryInput {
 	roleId: number;
+}
+
+export interface ProtectedGetCommentsForApplicationInput {
+	applicationId: number;
 }
 
 export interface ProtectedGetPositionsWithQueryInput {
@@ -33,6 +42,11 @@ export interface MissionsResponse {
 	errors?: ReadonlyArray<GraphQLError>;
 }
 
+export interface ProtectedCreateCommentMutationResponse {
+	data?: ProtectedCreateCommentMutationResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
 export interface ProtectedGetApplicationsResponse {
 	data?: ProtectedGetApplicationsResponseData;
 	errors?: ReadonlyArray<GraphQLError>;
@@ -40,6 +54,11 @@ export interface ProtectedGetApplicationsResponse {
 
 export interface ProtectedGetApplicationsWithQueryResponse {
 	data?: ProtectedGetApplicationsWithQueryResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedGetCommentsForApplicationResponse {
+	data?: ProtectedGetCommentsForApplicationResponseData;
 	errors?: ReadonlyArray<GraphQLError>;
 }
 
@@ -77,6 +96,15 @@ export interface MissionsResponseData {
 	}[];
 }
 
+export interface ProtectedCreateCommentMutationResponseData {
+	createCommentMutation: {
+		id: number;
+		message: string;
+		createdAt: string;
+		from: string;
+	};
+}
+
 export interface ProtectedGetApplicationsResponseData {
 	getApplications?: {
 		id?: number;
@@ -110,6 +138,15 @@ export interface ProtectedGetApplicationsWithQueryResponseData {
 			id?: number;
 			name?: string;
 		};
+	}[];
+}
+
+export interface ProtectedGetCommentsForApplicationResponseData {
+	getCommentsForApplication: {
+		id: number;
+		message: string;
+		createdAt: string;
+		from: string;
 	}[];
 }
 
@@ -152,6 +189,90 @@ export interface spacex_MissionsFind {
 	manufacturer?: string;
 	name?: string;
 	payload_id?: string;
+}
+
+export interface TGQL_CommentCreateInput {
+	message: string;
+	from: string;
+	application: TGQL_ApplicationCreateNestedOneWithoutCommentsInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_ApplicationCreateNestedOneWithoutCommentsInput {
+	create?: TGQL_ApplicationCreateWithoutCommentsInput;
+	connectOrCreate?: TGQL_ApplicationCreateOrConnectWithoutCommentsInput;
+	connect?: TGQL_ApplicationWhereUniqueInput;
+}
+
+export interface TGQL_ApplicationCreateWithoutCommentsInput {
+	role?: TGQL_PositionCreateNestedOneWithoutApplicationInput;
+	message?: string;
+	status?: "pending" | "accepted" | "rejected";
+	users?: TGQL_UserCreateNestedManyWithoutApplicationsInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_PositionCreateNestedOneWithoutApplicationInput {
+	create?: TGQL_PositionCreateWithoutApplicationInput;
+	connectOrCreate?: TGQL_PositionCreateOrConnectWithoutApplicationInput;
+	connect?: TGQL_PositionWhereUniqueInput;
+}
+
+export interface TGQL_PositionCreateWithoutApplicationInput {
+	name?: string;
+	description?: string;
+	open?: boolean;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_PositionCreateOrConnectWithoutApplicationInput {
+	where?: TGQL_PositionWhereUniqueInput;
+	create?: TGQL_PositionCreateWithoutApplicationInput;
+}
+
+export interface TGQL_PositionWhereUniqueInput {
+	id?: number;
+}
+
+export interface TGQL_UserCreateNestedManyWithoutApplicationsInput {
+	create?: TGQL_UserCreateWithoutApplicationsInput[];
+	connectOrCreate?: TGQL_UserCreateOrConnectWithoutApplicationsInput[];
+	connect?: TGQL_UserWhereUniqueInput[];
+}
+
+export interface TGQL_UserCreateWithoutApplicationsInput {
+	email: string;
+	name: string;
+	role?: TGQL_UserCreateroleInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_UserCreateroleInput {
+	set?: string[];
+}
+
+export interface TGQL_UserCreateOrConnectWithoutApplicationsInput {
+	where: TGQL_UserWhereUniqueInput;
+	create: TGQL_UserCreateWithoutApplicationsInput;
+}
+
+export interface TGQL_UserWhereUniqueInput {
+	id?: number;
+	email?: string;
+}
+
+export interface TGQL_ApplicationCreateOrConnectWithoutCommentsInput {
+	where?: TGQL_ApplicationWhereUniqueInput;
+	create?: TGQL_ApplicationCreateWithoutCommentsInput;
+}
+
+export interface TGQL_ApplicationWhereUniqueInput {
+	id?: number;
+	roleId?: number;
 }
 
 export type JSONValue = string | number | boolean | JSONObject | Array<JSONValue>;

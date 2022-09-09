@@ -8,11 +8,17 @@ import type {
 	MissionsResponse,
 	MissionsInput,
 	MissionsResponseData,
+	ProtectedCreateCommentMutationResponse,
+	ProtectedCreateCommentMutationInput,
+	ProtectedCreateCommentMutationResponseData,
 	ProtectedGetApplicationsResponse,
 	ProtectedGetApplicationsResponseData,
 	ProtectedGetApplicationsWithQueryResponse,
 	ProtectedGetApplicationsWithQueryInput,
 	ProtectedGetApplicationsWithQueryResponseData,
+	ProtectedGetCommentsForApplicationResponse,
+	ProtectedGetCommentsForApplicationInput,
+	ProtectedGetCommentsForApplicationResponseData,
 	ProtectedGetPositionsResponse,
 	ProtectedGetPositionsResponseData,
 	ProtectedGetPositionsWithQueryResponse,
@@ -39,7 +45,7 @@ const defaultWunderGraphContextProperties: WunderGraphContextProperties<Role> = 
 	ssrCache: {},
 	client: null,
 	clientConfig: {
-		applicationHash: "4e83b428",
+		applicationHash: "625da0fe",
 		applicationPath: "app/main",
 		baseURL: "http://localhost:9991",
 		sdkVersion: "0.100.0",
@@ -79,6 +85,15 @@ export const useQuery = {
 			operationName: "ProtectedGetApplicationsWithQuery",
 			requiresAuthentication: true,
 		})(args),
+	ProtectedGetCommentsForApplication: (args: QueryArgsWithInput<ProtectedGetCommentsForApplicationInput>) =>
+		hooks.useQueryWithInput<
+			ProtectedGetCommentsForApplicationInput,
+			ProtectedGetCommentsForApplicationResponseData,
+			Role
+		>(WunderGraphContext, {
+			operationName: "ProtectedGetCommentsForApplication",
+			requiresAuthentication: true,
+		})(args),
 	ProtectedGetPositionsWithQuery: (args: QueryArgsWithInput<ProtectedGetPositionsWithQueryInput>) =>
 		hooks.useQueryWithInput<ProtectedGetPositionsWithQueryInput, ProtectedGetPositionsWithQueryResponseData, Role>(
 			WunderGraphContext,
@@ -106,6 +121,14 @@ export const useQuery = {
 };
 
 export const useMutation = {
+	ProtectedCreateCommentMutation: () =>
+		hooks.useMutationWithInput<ProtectedCreateCommentMutationInput, ProtectedCreateCommentMutationResponseData, Role>(
+			WunderGraphContext,
+			{
+				operationName: "ProtectedCreateCommentMutation",
+				requiresAuthentication: true,
+			}
+		),
 	ProtectedUpdateApplicationMutation: () =>
 		hooks.useMutationWithInput<
 			ProtectedUpdateApplicationMutationInput,
@@ -120,6 +143,16 @@ export const useMutation = {
 export const useSubscription = {};
 
 export const useLiveQuery = {
+	ProtectedGetApplicationsWithQuery: (args: SubscriptionArgsWithInput<ProtectedGetApplicationsWithQueryInput>) =>
+		hooks.useSubscriptionWithInput<
+			ProtectedGetApplicationsWithQueryInput,
+			ProtectedGetApplicationsWithQueryResponseData,
+			Role
+		>(WunderGraphContext, {
+			operationName: "ProtectedGetApplicationsWithQuery",
+			requiresAuthentication: true,
+			isLiveQuery: true,
+		})(args),
 	ProtectedGetPositionsWithQuery: (args: SubscriptionArgsWithInput<ProtectedGetPositionsWithQueryInput>) =>
 		hooks.useSubscriptionWithInput<
 			ProtectedGetPositionsWithQueryInput,
@@ -133,6 +166,12 @@ export const useLiveQuery = {
 	ProtectedGetApplications: (args?: SubscriptionArgs) =>
 		hooks.useSubscriptionWithoutInput<ProtectedGetApplicationsResponseData, Role>(WunderGraphContext, {
 			operationName: "ProtectedGetApplications",
+			requiresAuthentication: true,
+			isLiveQuery: true,
+		})(args),
+	ProtectedGetPositions: (args?: SubscriptionArgs) =>
+		hooks.useSubscriptionWithoutInput<ProtectedGetPositionsResponseData, Role>(WunderGraphContext, {
+			operationName: "ProtectedGetPositions",
 			requiresAuthentication: true,
 			isLiveQuery: true,
 		})(args),

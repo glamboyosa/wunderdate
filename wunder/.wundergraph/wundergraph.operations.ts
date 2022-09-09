@@ -72,6 +72,8 @@ export default configureWunderGraphOperations<OperationsConfiguration>({
       ProtectedGetApplicationsWithQuery: enableAuth,
       ProtectedGetPositionsWithQuery: enableAuth,
       ProtectedUpdateApplicationMutation: enableAuth,
+      ProtectedCreateCommentMutation: enableAuth,
+      ProtectedGetCommentsForApplication: enableAuthAndLiveQuerying,
     },
   },
 })

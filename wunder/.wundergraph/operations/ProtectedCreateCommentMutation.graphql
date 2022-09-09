@@ -1,0 +1,12 @@
+mutation ($applicationId: Float!, $commentInput: TGQL_CommentCreateInput!)
+@rbac(requireMatchAll: [admin]) {
+  createCommentMutation: TGQL_createComment(
+    ApplicationId: $applicationId
+    CommentInput: $commentInput
+  ) {
+    id
+    message
+    createdAt
+    from
+  }
+}
