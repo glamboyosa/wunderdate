@@ -4,6 +4,20 @@ export interface MissionsInput {
 	find?: spacex_MissionsFind;
 }
 
+export interface ProtectedGetApplicationsWithQueryInput {
+	roleId: number;
+}
+
+export interface ProtectedGetPositionsWithQueryInput {
+	open: boolean;
+}
+
+export interface ProtectedUpdateApplicationMutationInput {
+	updateApplicationId: number;
+	open: boolean;
+	status: string;
+}
+
 export interface DragonsResponse {
 	data?: DragonsResponseData;
 	errors?: ReadonlyArray<GraphQLError>;
@@ -16,6 +30,31 @@ export interface HelloResponse {
 
 export interface MissionsResponse {
 	data?: MissionsResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedGetApplicationsResponse {
+	data?: ProtectedGetApplicationsResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedGetApplicationsWithQueryResponse {
+	data?: ProtectedGetApplicationsWithQueryResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedGetPositionsResponse {
+	data?: ProtectedGetPositionsResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedGetPositionsWithQueryResponse {
+	data?: ProtectedGetPositionsWithQueryResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedUpdateApplicationMutationResponse {
+	data?: ProtectedUpdateApplicationMutationResponseData;
 	errors?: ReadonlyArray<GraphQLError>;
 }
 
@@ -36,6 +75,76 @@ export interface MissionsResponseData {
 		name?: string;
 		manufacturers?: string[];
 	}[];
+}
+
+export interface ProtectedGetApplicationsResponseData {
+	getApplications?: {
+		id?: number;
+		message?: string;
+		status?: string;
+		comments?: {
+			from?: string;
+			id?: number;
+			message?: string;
+		}[];
+		role?: {
+			description?: string;
+			id?: number;
+			name?: string;
+		};
+	}[];
+}
+
+export interface ProtectedGetApplicationsWithQueryResponseData {
+	getApplicationsWithQuery?: {
+		id?: number;
+		message?: string;
+		status?: string;
+		comments?: {
+			from?: string;
+			id?: number;
+			message?: string;
+		}[];
+		role?: {
+			description?: string;
+			id?: number;
+			name?: string;
+		};
+	}[];
+}
+
+export interface ProtectedGetPositionsResponseData {
+	getPositions?: {
+		id?: number;
+		open?: boolean;
+		application?: {
+			message?: string;
+			role?: {
+				name?: string;
+				description?: string;
+			};
+		}[];
+	}[];
+}
+
+export interface ProtectedGetPositionsWithQueryResponseData {
+	getPositionsWithQuery?: {
+		id?: number;
+		open?: boolean;
+		application?: {
+			message?: string;
+			role?: {
+				name?: string;
+				description?: string;
+			};
+		}[];
+	}[];
+}
+
+export interface ProtectedUpdateApplicationMutationResponseData {
+	updateApplicationMutation?: {
+		status?: string;
+	};
 }
 
 export interface spacex_MissionsFind {

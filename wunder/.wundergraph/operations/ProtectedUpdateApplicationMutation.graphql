@@ -1,0 +1,10 @@
+mutation ($updateApplicationId: Int!, $open: Boolean!, $status: String!)
+@rbac(requireMatchAll: [admin]) {
+  updateApplicationMutation: Nexus_updateApplication(
+    id: $updateApplicationId
+    open: $open
+    status: $status
+  ) {
+    status
+  }
+}

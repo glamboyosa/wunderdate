@@ -8,6 +8,19 @@ import type {
 	MissionsResponse,
 	MissionsInput,
 	MissionsResponseData,
+	ProtectedGetApplicationsResponse,
+	ProtectedGetApplicationsResponseData,
+	ProtectedGetApplicationsWithQueryResponse,
+	ProtectedGetApplicationsWithQueryInput,
+	ProtectedGetApplicationsWithQueryResponseData,
+	ProtectedGetPositionsResponse,
+	ProtectedGetPositionsResponseData,
+	ProtectedGetPositionsWithQueryResponse,
+	ProtectedGetPositionsWithQueryInput,
+	ProtectedGetPositionsWithQueryResponseData,
+	ProtectedUpdateApplicationMutationResponse,
+	ProtectedUpdateApplicationMutationInput,
+	ProtectedUpdateApplicationMutationResponseData,
 } from "./models";
 import { createContext } from "react";
 import { hooks, WunderGraphContextProperties } from "@wundergraph/nextjs";
@@ -26,7 +39,7 @@ const defaultWunderGraphContextProperties: WunderGraphContextProperties<Role> = 
 	ssrCache: {},
 	client: null,
 	clientConfig: {
-		applicationHash: "cd00555a",
+		applicationHash: "4e83b428",
 		applicationPath: "app/main",
 		baseURL: "http://localhost:9991",
 		sdkVersion: "0.100.0",
@@ -57,6 +70,23 @@ export const useQuery = {
 			operationName: "Missions",
 			requiresAuthentication: false,
 		})(args),
+	ProtectedGetApplicationsWithQuery: (args: QueryArgsWithInput<ProtectedGetApplicationsWithQueryInput>) =>
+		hooks.useQueryWithInput<
+			ProtectedGetApplicationsWithQueryInput,
+			ProtectedGetApplicationsWithQueryResponseData,
+			Role
+		>(WunderGraphContext, {
+			operationName: "ProtectedGetApplicationsWithQuery",
+			requiresAuthentication: true,
+		})(args),
+	ProtectedGetPositionsWithQuery: (args: QueryArgsWithInput<ProtectedGetPositionsWithQueryInput>) =>
+		hooks.useQueryWithInput<ProtectedGetPositionsWithQueryInput, ProtectedGetPositionsWithQueryResponseData, Role>(
+			WunderGraphContext,
+			{
+				operationName: "ProtectedGetPositionsWithQuery",
+				requiresAuthentication: true,
+			}
+		)(args),
 	Dragons: hooks.useQueryWithoutInput<DragonsResponseData, Role>(WunderGraphContext, {
 		operationName: "Dragons",
 		requiresAuthentication: false,
@@ -65,29 +95,45 @@ export const useQuery = {
 		operationName: "Hello",
 		requiresAuthentication: false,
 	}),
+	ProtectedGetApplications: hooks.useQueryWithoutInput<ProtectedGetApplicationsResponseData, Role>(WunderGraphContext, {
+		operationName: "ProtectedGetApplications",
+		requiresAuthentication: true,
+	}),
+	ProtectedGetPositions: hooks.useQueryWithoutInput<ProtectedGetPositionsResponseData, Role>(WunderGraphContext, {
+		operationName: "ProtectedGetPositions",
+		requiresAuthentication: true,
+	}),
 };
 
-export const useMutation = {};
+export const useMutation = {
+	ProtectedUpdateApplicationMutation: () =>
+		hooks.useMutationWithInput<
+			ProtectedUpdateApplicationMutationInput,
+			ProtectedUpdateApplicationMutationResponseData,
+			Role
+		>(WunderGraphContext, {
+			operationName: "ProtectedUpdateApplicationMutation",
+			requiresAuthentication: true,
+		}),
+};
 
 export const useSubscription = {};
 
 export const useLiveQuery = {
-	Missions: (args: SubscriptionArgsWithInput<MissionsInput>) =>
-		hooks.useSubscriptionWithInput<MissionsInput, MissionsResponseData, Role>(WunderGraphContext, {
-			operationName: "Missions",
-			requiresAuthentication: false,
+	ProtectedGetPositionsWithQuery: (args: SubscriptionArgsWithInput<ProtectedGetPositionsWithQueryInput>) =>
+		hooks.useSubscriptionWithInput<
+			ProtectedGetPositionsWithQueryInput,
+			ProtectedGetPositionsWithQueryResponseData,
+			Role
+		>(WunderGraphContext, {
+			operationName: "ProtectedGetPositionsWithQuery",
+			requiresAuthentication: true,
 			isLiveQuery: true,
 		})(args),
-	Dragons: (args?: SubscriptionArgs) =>
-		hooks.useSubscriptionWithoutInput<DragonsResponseData, Role>(WunderGraphContext, {
-			operationName: "Dragons",
-			requiresAuthentication: false,
-			isLiveQuery: true,
-		})(args),
-	Hello: (args?: SubscriptionArgs) =>
-		hooks.useSubscriptionWithoutInput<HelloResponseData, Role>(WunderGraphContext, {
-			operationName: "Hello",
-			requiresAuthentication: false,
+	ProtectedGetApplications: (args?: SubscriptionArgs) =>
+		hooks.useSubscriptionWithoutInput<ProtectedGetApplicationsResponseData, Role>(WunderGraphContext, {
+			operationName: "ProtectedGetApplications",
+			requiresAuthentication: true,
 			isLiveQuery: true,
 		})(args),
 };

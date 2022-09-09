@@ -25,10 +25,11 @@ type Mutation {
 }
 
 type Position {
-  applications: [Application]
+  application: [Application]
   description: String
   id: Int
   name: String
+  open: Boolean
 }
 
 type Query {

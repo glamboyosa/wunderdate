@@ -1,0 +1,17 @@
+query @rbac(requireMatchAll: [admin]) {
+  getApplications: Nexus_getApplications {
+    id
+    message
+    status
+    comments {
+      from
+      id
+      message
+    }
+    role {
+      description
+      id
+      name
+    }
+  }
+}

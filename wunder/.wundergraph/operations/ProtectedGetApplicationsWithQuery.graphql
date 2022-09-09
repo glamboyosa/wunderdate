@@ -1,0 +1,17 @@
+query ($roleId: Int!) @rbac(requireMatchAll: [admin]) {
+  getApplicationsWithQuery: Nexus_getApplicationsWithQuery(roleId: $roleId) {
+    id
+    message
+    status
+    comments {
+      from
+      id
+      message
+    }
+    role {
+      description
+      id
+      name
+    }
+  }
+}

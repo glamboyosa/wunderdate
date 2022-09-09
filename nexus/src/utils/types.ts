@@ -51,8 +51,9 @@ const Position = objectType({
   definition(t) {
     t.int('id')
     t.string('name')
+    t.boolean('open')
     t.nullable.string('description')
-    t.list.field('applications', { type: Application })
+    t.list.field('application', { type: Application })
   },
 })
 const Comment = objectType({
@@ -104,11 +105,7 @@ const Query = extendType({
       resolve: (_, __, ctx: context) => {
         return ctx.prisma.position.findMany({
           include: {
-            _count: {
-              select: {
-                application: true,
-              },
-            },
+            application: true,
           },
         })
       },
@@ -124,11 +121,7 @@ const Query = extendType({
             open,
           },
           include: {
-            _count: {
-              select: {
-                application: true,
-              },
-            },
+            application: true,
           },
         })
       },

@@ -5,6 +5,9 @@
     "start": "wunderctl up --debug",
     "generate": "prisma generate",
     "wunderctl": "wunderctl",
+    "kill:nexus": "kill -9 $(lsof -t -i:4000)",
+    "kill:tgql": "kill -9 $(lsof -t -i:8000)",
+    "kill:all": "npm run kill:nexus && npm run kill:tgql",
     "check": "tsc"
   },
   "author": "",
