@@ -4,7 +4,7 @@ type TNavProps = {
   name: string
 }
 const Nav = ({ isLoggedIn, name }: TNavProps) => (
-  <nav className="bg-white w-full px-6 py-4 border-solid border-veryDarkBlue border-b-4 flex items-center justify-between">
+  <nav className="bg-white w-full cursor-pointer px-6 py-4 border-solid border-veryDarkBlue border-b-4 flex items-center justify-between">
     <div className="md:hidden">
       <HamburgerMenuIcon width={20} height={20} />
     </div>

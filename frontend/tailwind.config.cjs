@@ -14,6 +14,10 @@ module.exports = {
       },
       width: {
         paragraph: '32em',
+        mw: '70vw',
+      },
+      gridTemplateColumns: {
+        rf: '0.15fr 1fr',
       },
       colors: {
         brightRed: 'hsl(12, 88%, 59%)',
