@@ -68,6 +68,7 @@ export default configureWunderGraphOperations<OperationsConfiguration>({
     }),
     custom: {
       ProtectedGetApplications: enableAuth,
+      ProtectedGetApplication: enableAuth,
       ProtectedGetPositions: enableAuth,
       ProtectedGetApplicationsWithQuery: enableAuth,
       ProtectedGetPositionsWithQuery: enableAuth,

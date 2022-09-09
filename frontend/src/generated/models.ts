@@ -9,6 +9,10 @@ export interface ProtectedCreateCommentMutationInput {
 	commentInput: TGQL_CommentCreateInput;
 }
 
+export interface ProtectedGetApplicationInput {
+	id: number;
+}
+
 export interface ProtectedGetApplicationsWithQueryInput {
 	roleId: number;
 }
@@ -44,6 +48,11 @@ export interface MissionsResponse {
 
 export interface ProtectedCreateCommentMutationResponse {
 	data?: ProtectedCreateCommentMutationResponseData;
+	errors?: ReadonlyArray<GraphQLError>;
+}
+
+export interface ProtectedGetApplicationResponse {
+	data?: ProtectedGetApplicationResponseData;
 	errors?: ReadonlyArray<GraphQLError>;
 }
 
@@ -105,18 +114,25 @@ export interface ProtectedCreateCommentMutationResponseData {
 	};
 }
 
+export interface ProtectedGetApplicationResponseData {
+	getApplicationsWithQuery?: {
+		id?: number;
+		message?: string;
+		status?: string;
+		role?: {
+			description?: string;
+			id?: number;
+			name?: string;
+		};
+	};
+}
+
 export interface ProtectedGetApplicationsResponseData {
 	getApplications?: {
 		id?: number;
 		message?: string;
 		status?: string;
-		comments?: {
-			from?: string;
-			id?: number;
-			message?: string;
-		}[];
 		role?: {
-			description?: string;
 			id?: number;
 			name?: string;
 		};

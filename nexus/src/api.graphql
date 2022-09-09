@@ -33,6 +33,7 @@ type Position {
 }
 
 type Query {
+  getApplication(id: Int!): Application
   getApplications: [Application]
   getApplicationsWithQuery(roleId: Int!): [Application]
   getPositions: [Position]

@@ -10,6 +10,9 @@ import { context } from '../context'
 interface IApplicationQuery {
   roleId: number
 }
+interface IApplicationParam {
+  id: number
+}
 interface IPositionQuery {
   open: boolean
 }
@@ -74,6 +77,22 @@ const Query = extendType({
       type: Application,
       resolve: (_, __, ctx: context) => {
         return ctx.prisma.application.findMany({
+          include: {
+            comments: true,
+            users: true,
+            role: true,
+          },
+        })
+      },
+    })
+    t.field('getApplication', {
+      type: Application,
+      args: {
+        id: nonNull(intArg()),
+      },
+      resolve: (_, { id }: IApplicationParam, ctx: context) => {
+        return ctx.prisma.application.findUnique({
+          where: { id },
           include: {
             comments: true,
             users: true,

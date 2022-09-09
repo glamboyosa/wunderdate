@@ -3,13 +3,7 @@ query @rbac(requireMatchAll: [admin]) {
     id
     message
     status
-    comments {
-      from
-      id
-      message
-    }
     role {
-      description
       id
       name
     }

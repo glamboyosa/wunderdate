@@ -11,6 +11,9 @@ import type {
 	ProtectedCreateCommentMutationResponse,
 	ProtectedCreateCommentMutationInput,
 	ProtectedCreateCommentMutationResponseData,
+	ProtectedGetApplicationResponse,
+	ProtectedGetApplicationInput,
+	ProtectedGetApplicationResponseData,
 	ProtectedGetApplicationsResponse,
 	ProtectedGetApplicationsResponseData,
 	ProtectedGetApplicationsWithQueryResponse,
@@ -45,7 +48,7 @@ const defaultWunderGraphContextProperties: WunderGraphContextProperties<Role> = 
 	ssrCache: {},
 	client: null,
 	clientConfig: {
-		applicationHash: "625da0fe",
+		applicationHash: "2b76fa43",
 		applicationPath: "app/main",
 		baseURL: "http://localhost:9991",
 		sdkVersion: "0.100.0",
@@ -76,6 +79,14 @@ export const useQuery = {
 			operationName: "Missions",
 			requiresAuthentication: false,
 		})(args),
+	ProtectedGetApplication: (args: QueryArgsWithInput<ProtectedGetApplicationInput>) =>
+		hooks.useQueryWithInput<ProtectedGetApplicationInput, ProtectedGetApplicationResponseData, Role>(
+			WunderGraphContext,
+			{
+				operationName: "ProtectedGetApplication",
+				requiresAuthentication: true,
+			}
+		)(args),
 	ProtectedGetApplicationsWithQuery: (args: QueryArgsWithInput<ProtectedGetApplicationsWithQueryInput>) =>
 		hooks.useQueryWithInput<
 			ProtectedGetApplicationsWithQueryInput,
