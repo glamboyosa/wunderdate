@@ -4,6 +4,7 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import PositionCard from '../components/positionCard'
 import { useRouter } from 'next/router'
 import ApplicationCard from '../components/applicationCard'
+import Sidebar from '../components/sidebar'
 const Home: NextPage = () => {
   const { pathname } = useRouter()
   return (
@@ -13,30 +14,36 @@ const Home: NextPage = () => {
       </Head>
       <div className=" p-5 shadow-lg bg-white rounded-md">
         <div className="grid grid-cols-rf gap-0.5 min-h-[600px] w-full">
-          <div className="flex flex-col  items-start cursor-pointer text-left">
-            <div className=" w-full border-solid border-veryDarkBlue border-b-4 -mt-2 items-center mb-2">
-              <h3 className="text-2xl">WunderDate</h3>
-            </div>
-            <h1 className="text-3xl mb-6">Hiring</h1>
-            <span
-              className={pathname === '/' ? 'text-lg mb-3' : 'text-lg mb-3'}
-            >
-              Applications
-            </span>
-            <span
-              className={
-                pathname === '/'
-                  ? 'text-lg p-3 rounded-md  bg-brightRedSupLight'
-                  : 'text-lg'
-              }
-            >
-              Positions
-            </span>
-          </div>
+          <Sidebar />
 
           <main className="bg-veryLightGray p-2 min-w-[70vw] w-auto">
             <div className="mt-2 grid grid-cols-3  gap-2">
-              <ApplicationCard
+              <PositionCard
+                name="Full Stack Engineer – Core"
+                description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
+                count={3}
+              />
+              <PositionCard
+                name="Full Stack Engineer – Core"
+                description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
+                count={3}
+              />
+              <PositionCard
+                name="Full Stack Engineer – Core"
+                description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
+                count={3}
+              />
+              <PositionCard
+                name="Full Stack Engineer – Core"
+                description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
+                count={3}
+              />
+              <PositionCard
+                name="Full Stack Engineer – Core"
+                description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
+                count={3}
+              />
+              {/* <ApplicationCard
                 name="Jim Jones II"
                 position="Full Stack Engineer – Core"
               />
@@ -59,7 +66,7 @@ const Home: NextPage = () => {
               <ApplicationCard
                 name="Jim Jones II"
                 position="Full Stack Engineer – Core"
-              />
+              /> */}
             </div>
           </main>
         </div>

@@ -6,7 +6,7 @@ type TPositionCardProps = {
 
 const PositionCard = ({ name, description, count }: TPositionCardProps) => {
   return (
-    <section className="flex cursor-pointer flex-col justify-center p-6 bg-white rounded shadow-md w-paragraph">
+    <section className="flex cursor-pointer flex-col justify-center p-6 bg-white rounded shadow-md w-auto">
       <h2 className="text-xl text-gray-700 mt-1.5 mb-1.5 md:text-3xl ">
         {name}
       </h2>
