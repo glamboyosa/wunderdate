@@ -20,7 +20,7 @@ import path from 'path'
   const apolloServer = new ApolloServer({
     introspection: true,
     schema: await buildSchema({
-      resolvers: [HelloResolver, CommentsResolver],
+      resolvers: [CommentsResolver],
     }),
     context: ({ req, res }: context) => ({ req, res, prisma }),
   })

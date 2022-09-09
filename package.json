@@ -1,13 +1,15 @@
 {
-  "name": "wunderdate",
-  "version": "0.0.0",
-  "private": true,
+  "name": "wundergraph-application",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "start": "node ./bin/www",
-    "seed:db": "ts-node script.ts",
-    "reset_seed": "npx prisma migrate reset && npm run seed:db",
-    "gen": "prisma generate"
+    "start": "wunderctl up --debug",
+    "generate": "prisma generate",
+    "wunderctl": "wunderctl",
+    "check": "tsc"
   },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
     "prettier-plugin-prisma": "^4.2.0",

@@ -7,7 +7,7 @@ import ApplicationRouter from './routes/application'
 import PositionRouter from './routes/position'
 const pathToDotEnv = path.resolve('../.env')
 dotenv.config({ path: pathToDotEnv })
-
+console.log(pathToDotEnv)
 const app = express()
 const PORT = process.env.EXPRESS_PORT || 4001
 

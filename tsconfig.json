@@ -12,9 +12,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "outDir": "./dist"
+    "noEmit": true
   },
-  "exclude": ["node_modules", "dist"],
-  "include": [".wundergraph/**/*.ts"]
+  "include": ["wunder/.wundergraph/**/*.ts"]
 }
