@@ -28,7 +28,9 @@ import path from 'path'
   apolloServer.applyMiddleware({ app, cors: false })
   const port = process.env.GQL_PORT || 7000
   app.listen(port, () => {
-    console.log(`started on ${port}`)
+    console.log(
+      `🌴 TypeGraphQL service live at http://localhost:${port}/graphql`,
+    )
   })
   process.on('exit', async () => {
     await prisma.$disconnect()

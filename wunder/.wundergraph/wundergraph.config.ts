@@ -20,10 +20,14 @@ const TGQLEndpoint = introspect.graphql({
   apiNamespace: 'TGQL',
   url: 'http://localhost:8000/graphql',
 })
+const nexusEndpoint = introspect.graphql({
+  apiNamespace: 'Nexus',
+  url: 'http://localhost:4000/graphql',
+})
 
 const myApplication = new Application({
   name: 'app',
-  apis: [spaceX, TGQLEndpoint],
+  apis: [spaceX, TGQLEndpoint, nexusEndpoint],
 })
 
 // configureWunderGraph emits the configuration
