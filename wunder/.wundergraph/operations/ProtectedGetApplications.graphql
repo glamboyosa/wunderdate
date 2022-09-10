@@ -3,6 +3,10 @@ query @rbac(requireMatchAll: [admin]) {
     id
     message
     status
+    users {
+      name
+      email
+    }
     role {
       id
       name

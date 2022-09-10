@@ -1,6 +1,6 @@
 type TApplicationCardProps = {
   name: string
-  position: string
+  position?: string
 }
 
 const ApplicationCard = ({ name, position }: TApplicationCardProps) => {

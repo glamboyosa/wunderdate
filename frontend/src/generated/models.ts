@@ -115,10 +115,14 @@ export interface ProtectedCreateCommentMutationResponseData {
 }
 
 export interface ProtectedGetApplicationResponseData {
-	getApplicationsWithQuery?: {
+	getApplication?: {
 		id?: number;
 		message?: string;
 		status?: string;
+		users?: {
+			name?: string;
+			email?: string;
+		};
 		role?: {
 			description?: string;
 			id?: number;
@@ -132,6 +136,10 @@ export interface ProtectedGetApplicationsResponseData {
 		id?: number;
 		message?: string;
 		status?: string;
+		users?: {
+			name?: string;
+			email?: string;
+		};
 		role?: {
 			id?: number;
 			name?: string;
@@ -144,11 +152,10 @@ export interface ProtectedGetApplicationsWithQueryResponseData {
 		id?: number;
 		message?: string;
 		status?: string;
-		comments?: {
-			from?: string;
-			id?: number;
-			message?: string;
-		}[];
+		users?: {
+			name?: string;
+			email?: string;
+		};
 		role?: {
 			description?: string;
 			id?: number;

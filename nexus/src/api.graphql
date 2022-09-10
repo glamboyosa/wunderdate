@@ -9,7 +9,7 @@ type Application {
   role: Position
   roleId: Int
   status: String
-  users: [User]
+  users: User
 }
 
 type Comment {

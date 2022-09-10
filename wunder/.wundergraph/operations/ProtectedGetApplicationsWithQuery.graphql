@@ -3,10 +3,9 @@ query ($roleId: Int!) @rbac(requireMatchAll: [admin]) {
     id
     message
     status
-    comments {
-      from
-      id
-      message
+    users {
+      name
+      email
     }
     role {
       description

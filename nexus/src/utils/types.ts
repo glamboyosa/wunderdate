@@ -45,7 +45,7 @@ const Application = objectType({
     t.field('role', {
       type: Position,
     })
-    t.list.field('users', { type: User })
+    t.field('users', { type: User })
     t.list.field('comments', { type: Comment })
   },
 })

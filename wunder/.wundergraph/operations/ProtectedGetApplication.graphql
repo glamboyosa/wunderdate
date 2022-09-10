@@ -1,8 +1,12 @@
 query ($id: Int!) @rbac(requireMatchAll: [admin]) {
-  getApplicationsWithQuery: Nexus_getApplication(id: $id) {
+  getApplication: Nexus_getApplication(id: $id) {
     id
     message
     status
+    users {
+      name
+      email
+    }
     role {
       description
       id

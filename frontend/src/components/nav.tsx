@@ -16,7 +16,7 @@ const Nav = () => {
       <h3
         className="text-2xl ml-auto md:text-3xl"
         onClick={() => {
-          isLoggedIn && push('/login')
+          !isLoggedIn && push('/login')
         }}
       >
         {isLoggedIn ? name : 'Login'}
