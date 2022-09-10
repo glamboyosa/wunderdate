@@ -10,9 +10,8 @@ import ApplicationCard from '../../components/applicationCard'
 import Sidebar from '../../components/sidebar'
 import Main from '../../components/main'
 const Positions: NextPage = () => {
-  const { login, logout, user } = useWunderGraph()
-  console.log(user)
-
+  const { user } = useWunderGraph()
+  const { result } = useQuery.ProtectedGetPositions()
   return (
     <>
       <Head>
@@ -23,31 +22,17 @@ const Positions: NextPage = () => {
           <Sidebar />
 
           <Main>
-            <PositionCard
-              name="Full Stack Engineer – Core"
-              description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
-              count={3}
-            />
-            <PositionCard
-              name="Full Stack Engineer – Core"
-              description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
-              count={3}
-            />
-            <PositionCard
-              name="Full Stack Engineer – Core"
-              description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
-              count={3}
-            />
-            <PositionCard
-              name="Full Stack Engineer – Core"
-              description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
-              count={3}
-            />
-            <PositionCard
-              name="Full Stack Engineer – Core"
-              description="We are looking for a full stack software engineer to join the core team. You will collaborate with designers and other engineers to work on our core suite of products"
-              count={3}
-            />
+            {result.status === 'ok' &&
+              result.data.getPositions?.map((position) => {
+                return (
+                  <PositionCard
+                    key={position.id}
+                    name={position.name!}
+                    description={position.description!}
+                    count={position.application?.length!}
+                  />
+                )
+              })}
           </Main>
         </div>
       </div>

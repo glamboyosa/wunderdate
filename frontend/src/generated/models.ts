@@ -177,6 +177,8 @@ export interface ProtectedGetPositionsResponseData {
 	getPositions?: {
 		id?: number;
 		open?: boolean;
+		name?: string;
+		description?: string;
 		application?: {
 			message?: string;
 			role?: {
@@ -191,6 +193,8 @@ export interface ProtectedGetPositionsWithQueryResponseData {
 	getPositionsWithQuery?: {
 		id?: number;
 		open?: boolean;
+		name?: string;
+		description?: string;
 		application?: {
 			message?: string;
 			role?: {

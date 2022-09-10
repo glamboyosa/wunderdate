@@ -2,6 +2,8 @@ query @rbac(requireMatchAll: [admin]) {
   getPositions: Nexus_getPositions {
     id
     open
+    name
+    description
     application {
       message
       role {
