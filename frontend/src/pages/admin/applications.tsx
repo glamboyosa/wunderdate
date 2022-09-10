@@ -5,7 +5,6 @@ import {
   withWunderGraph,
   useQuery,
 } from '../../generated/nextjs'
-import PositionCard from '../../components/positionCard'
 import ApplicationCard from '../../components/applicationCard'
 import Sidebar from '../../components/sidebar'
 import Main from '../../components/main'
@@ -24,7 +23,6 @@ const Positions: NextPage = () => {
       <div className=" p-5 shadow-lg bg-white rounded-md">
         <div className="grid grid-cols-rf gap-0.5 min-h-[600px] w-full">
           <Sidebar />
-
           <Main>
             {result.status === 'ok' &&
               result.data.getApplications?.map((application) => {
