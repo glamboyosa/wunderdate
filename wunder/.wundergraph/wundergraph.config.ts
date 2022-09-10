@@ -7,10 +7,13 @@ import {
   templates,
   authProviders,
 } from '@wundergraph/sdk'
+import dotenv from 'dotenv'
+import path from 'path'
 import server from './wundergraph.server'
 import operations from './wundergraph.operations'
 import { NextJsTemplate } from '@wundergraph/nextjs/dist/template'
-
+const pathToDotEnv = path.resolve('../../.env')
+dotenv.config({ path: pathToDotEnv })
 const spaceX = introspect.graphql({
   apiNamespace: 'spacex',
   url: 'https://api.spacex.land/graphql/',
@@ -66,7 +69,14 @@ configureWunderGraphApplication({
   },
   authentication: {
     cookieBased: {
-      providers: [authProviders.demo()],
+      providers: [
+        authProviders.github({
+          id: 'github',
+          clientId: process.env.GITHUB_CLIENT_ID!,
+          clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+        }),
+      ],
+      authorizedRedirectUris: ['http://localhost:3000/login'],
     },
   },
   authorization: {

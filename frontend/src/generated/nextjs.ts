@@ -48,7 +48,7 @@ const defaultWunderGraphContextProperties: WunderGraphContextProperties<Role> = 
 	ssrCache: {},
 	client: null,
 	clientConfig: {
-		applicationHash: "2b76fa43",
+		applicationHash: "23e3ad05",
 		applicationPath: "app/main",
 		baseURL: "http://localhost:9991",
 		sdkVersion: "0.100.0",
@@ -154,6 +154,15 @@ export const useMutation = {
 export const useSubscription = {};
 
 export const useLiveQuery = {
+	ProtectedGetApplication: (args: SubscriptionArgsWithInput<ProtectedGetApplicationInput>) =>
+		hooks.useSubscriptionWithInput<ProtectedGetApplicationInput, ProtectedGetApplicationResponseData, Role>(
+			WunderGraphContext,
+			{
+				operationName: "ProtectedGetApplication",
+				requiresAuthentication: true,
+				isLiveQuery: true,
+			}
+		)(args),
 	ProtectedGetApplicationsWithQuery: (args: SubscriptionArgsWithInput<ProtectedGetApplicationsWithQueryInput>) =>
 		hooks.useSubscriptionWithInput<
 			ProtectedGetApplicationsWithQueryInput,

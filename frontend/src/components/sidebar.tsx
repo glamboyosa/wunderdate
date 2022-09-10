@@ -8,12 +8,18 @@ const Sidebar = () => {
         <h3 className="text-2xl">WunderDate</h3>
       </div>
       <h1 className="text-3xl mb-6">Hiring</h1>
-      <span className={pathname === '/' ? 'text-lg mb-3' : 'text-lg mb-3'}>
+      <span
+        className={
+          pathname === '/admin/applications'
+            ? 'text-lg mb-3  p-3 rounded-md  bg-brightRedSupLight'
+            : 'text-lg mb-3'
+        }
+      >
         Applications
       </span>
       <span
         className={
-          pathname === '/'
+          pathname === '/admin/positions'
             ? 'text-lg p-3 rounded-md  bg-brightRedSupLight'
             : 'text-lg'
         }
