@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { UserOrderByWithRelationInput } from "../../../inputs/UserOrderByWithRelationInput";
-import { UserWhereInput } from "../../../inputs/UserWhereInput";
-import { UserWhereUniqueInput } from "../../../inputs/UserWhereUniqueInput";
-import { UserScalarFieldEnum } from "../../../../enums/UserScalarFieldEnum";
+import { UsersOnApplicationOrderByWithRelationInput } from "../../../inputs/UsersOnApplicationOrderByWithRelationInput";
+import { UsersOnApplicationWhereInput } from "../../../inputs/UsersOnApplicationWhereInput";
+import { UsersOnApplicationWhereUniqueInput } from "../../../inputs/UsersOnApplicationWhereUniqueInput";
+import { UsersOnApplicationScalarFieldEnum } from "../../../../enums/UsersOnApplicationScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class ApplicationUsersArgs {
-  @TypeGraphQL.Field(_type => UserWhereInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationWhereInput, {
     nullable: true
   })
-  where?: UserWhereInput | undefined;
+  where?: UsersOnApplicationWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [UserOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [UsersOnApplicationOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: UserOrderByWithRelationInput[] | undefined;
+  orderBy?: UsersOnApplicationOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => UserWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationWhereUniqueInput, {
     nullable: true
   })
-  cursor?: UserWhereUniqueInput | undefined;
+  cursor?: UsersOnApplicationWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class ApplicationUsersArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [UserScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [UsersOnApplicationScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "email" | "name" | "role" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"userId" | "applicationId" | "createdAt" | "updatedAt"> | undefined;
 }

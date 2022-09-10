@@ -7,6 +7,7 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { EnumStatusFieldUpdateOperationsInput } from "../inputs/EnumStatusFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PositionUpdateOneRequiredWithoutApplicationNestedInput } from "../inputs/PositionUpdateOneRequiredWithoutApplicationNestedInput";
+import { UserUpdateManyWithoutApplicationNestedInput } from "../inputs/UserUpdateManyWithoutApplicationNestedInput";
 
 @TypeGraphQL.InputType("ApplicationUpdateWithoutUsersInput", {
   isAbstract: true
@@ -41,4 +42,9 @@ export class ApplicationUpdateWithoutUsersInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateManyWithoutApplicationNestedInput, {
+    nullable: true
+  })
+  User?: UserUpdateManyWithoutApplicationNestedInput | undefined;
 }

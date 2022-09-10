@@ -6,7 +6,8 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { EnumStatusFieldUpdateOperationsInput } from "../inputs/EnumStatusFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PositionUpdateOneRequiredWithoutApplicationNestedInput } from "../inputs/PositionUpdateOneRequiredWithoutApplicationNestedInput";
-import { UserUpdateManyWithoutApplicationsNestedInput } from "../inputs/UserUpdateManyWithoutApplicationsNestedInput";
+import { UserUpdateManyWithoutApplicationNestedInput } from "../inputs/UserUpdateManyWithoutApplicationNestedInput";
+import { UsersOnApplicationUpdateManyWithoutApplicationNestedInput } from "../inputs/UsersOnApplicationUpdateManyWithoutApplicationNestedInput";
 
 @TypeGraphQL.InputType("ApplicationUpdateWithoutCommentsInput", {
   isAbstract: true
@@ -27,10 +28,10 @@ export class ApplicationUpdateWithoutCommentsInput {
   })
   status?: EnumStatusFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateManyWithoutApplicationsNestedInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationUpdateManyWithoutApplicationNestedInput, {
     nullable: true
   })
-  users?: UserUpdateManyWithoutApplicationsNestedInput | undefined;
+  users?: UsersOnApplicationUpdateManyWithoutApplicationNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
@@ -41,4 +42,9 @@ export class ApplicationUpdateWithoutCommentsInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateManyWithoutApplicationNestedInput, {
+    nullable: true
+  })
+  User?: UserUpdateManyWithoutApplicationNestedInput | undefined;
 }

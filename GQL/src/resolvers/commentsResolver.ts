@@ -1,9 +1,5 @@
 import { Query, Resolver, Mutation, Arg, Ctx } from 'type-graphql'
-import {
-  Comment,
-  CommentCreateInput,
-  CommentCreateWithoutApplicationInput,
-} from '../generated/typegraphql-prisma'
+import { Comment, CommentCreateInput } from '../generated/typegraphql-prisma'
 import { context } from '../utils/types'
 @Resolver()
 export class CommentsResolver {
@@ -21,13 +17,15 @@ export class CommentsResolver {
 
   @Mutation(() => Comment)
   async createComment(
-    @Arg('CommentInput') inputData: CommentCreateWithoutApplicationInput,
+    @Arg('CommentInput') inputData: CommentCreateInput,
     @Arg('ApplicationId') applicationId: number,
     @Ctx() { prisma }: context,
   ): Promise<Comment> {
     console.log(inputData)
+    const dt = inputData as { from: string; message: string; application: any }
+    delete dt.application
     const data = {
-      ...inputData,
+      ...dt,
       application: {
         connect: { id: applicationId },
       },

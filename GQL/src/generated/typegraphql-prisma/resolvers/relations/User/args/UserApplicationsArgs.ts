@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { ApplicationOrderByWithRelationInput } from "../../../inputs/ApplicationOrderByWithRelationInput";
-import { ApplicationWhereInput } from "../../../inputs/ApplicationWhereInput";
-import { ApplicationWhereUniqueInput } from "../../../inputs/ApplicationWhereUniqueInput";
-import { ApplicationScalarFieldEnum } from "../../../../enums/ApplicationScalarFieldEnum";
+import { UsersOnApplicationOrderByWithRelationInput } from "../../../inputs/UsersOnApplicationOrderByWithRelationInput";
+import { UsersOnApplicationWhereInput } from "../../../inputs/UsersOnApplicationWhereInput";
+import { UsersOnApplicationWhereUniqueInput } from "../../../inputs/UsersOnApplicationWhereUniqueInput";
+import { UsersOnApplicationScalarFieldEnum } from "../../../../enums/UsersOnApplicationScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class UserApplicationsArgs {
-  @TypeGraphQL.Field(_type => ApplicationWhereInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationWhereInput, {
     nullable: true
   })
-  where?: ApplicationWhereInput | undefined;
+  where?: UsersOnApplicationWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [ApplicationOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [UsersOnApplicationOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: ApplicationOrderByWithRelationInput[] | undefined;
+  orderBy?: UsersOnApplicationOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationWhereUniqueInput, {
     nullable: true
   })
-  cursor?: ApplicationWhereUniqueInput | undefined;
+  cursor?: UsersOnApplicationWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class UserApplicationsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [ApplicationScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [UsersOnApplicationScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "roleId" | "message" | "status" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"userId" | "applicationId" | "createdAt" | "updatedAt"> | undefined;
 }

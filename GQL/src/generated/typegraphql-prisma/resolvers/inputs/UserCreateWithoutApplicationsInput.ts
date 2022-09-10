@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ApplicationCreateNestedOneWithoutUserInput } from "../inputs/ApplicationCreateNestedOneWithoutUserInput";
 import { UserCreateroleInput } from "../inputs/UserCreateroleInput";
 
 @TypeGraphQL.InputType("UserCreateWithoutApplicationsInput", {
@@ -32,4 +33,9 @@ export class UserCreateWithoutApplicationsInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => ApplicationCreateNestedOneWithoutUserInput, {
+    nullable: true
+  })
+  Application?: ApplicationCreateNestedOneWithoutUserInput | undefined;
 }

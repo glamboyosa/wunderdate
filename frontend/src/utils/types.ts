@@ -3,7 +3,7 @@ export interface LoggedInState {
   setLoggedIn: (isLoggedIn: boolean) => void
 }
 export interface UserNameState {
-    username: string
-    setUsername: (name: string) => void
-  }
-  
+  username: string
+  setUsername: (name: string) => void
+}
+export type TInputRef = HTMLTextAreaElement

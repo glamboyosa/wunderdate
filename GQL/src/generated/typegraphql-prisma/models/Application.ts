@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../scalars";
 import { Comment } from "../models/Comment";
 import { Position } from "../models/Position";
 import { User } from "../models/User";
+import { UsersOnApplication } from "../models/UsersOnApplication";
 import { Status } from "../enums/Status";
 import { ApplicationCount } from "../resolvers/outputs/ApplicationCount";
 
@@ -36,7 +37,7 @@ export class Application {
 
   comments?: Comment[];
 
-  users?: User[];
+  users?: UsersOnApplication[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
@@ -47,6 +48,8 @@ export class Application {
     nullable: false
   })
   updatedAt!: Date;
+
+  User?: User[];
 
   @TypeGraphQL.Field(_type => ApplicationCount, {
     nullable: true

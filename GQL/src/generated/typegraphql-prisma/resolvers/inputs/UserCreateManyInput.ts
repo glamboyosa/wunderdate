@@ -37,4 +37,9 @@ export class UserCreateManyInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  applicationId?: number | undefined;
 }

@@ -2,7 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationOrderByRelationAggregateInput } from "../inputs/ApplicationOrderByRelationAggregateInput";
+import { ApplicationOrderByWithRelationInput } from "../inputs/ApplicationOrderByWithRelationInput";
+import { UsersOnApplicationOrderByRelationAggregateInput } from "../inputs/UsersOnApplicationOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("UserOrderByWithRelationInput", {
@@ -29,10 +30,10 @@ export class UserOrderByWithRelationInput {
   })
   role?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationOrderByRelationAggregateInput, {
     nullable: true
   })
-  applications?: ApplicationOrderByRelationAggregateInput | undefined;
+  applications?: UsersOnApplicationOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -43,4 +44,14 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => ApplicationOrderByWithRelationInput, {
+    nullable: true
+  })
+  Application?: ApplicationOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  applicationId?: "asc" | "desc" | undefined;
 }

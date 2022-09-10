@@ -31,4 +31,9 @@ export class UserMaxAggregate {
     nullable: true
   })
   updatedAt!: Date | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  applicationId!: number | null;
 }

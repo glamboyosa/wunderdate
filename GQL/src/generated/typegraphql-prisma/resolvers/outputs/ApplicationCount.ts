@@ -16,4 +16,9 @@ export class ApplicationCount {
     nullable: false
   })
   users!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  User!: number;
 }

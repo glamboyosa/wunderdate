@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Application } from "../models/Application";
+import { UsersOnApplication } from "../models/UsersOnApplication";
 import { UserCount } from "../resolvers/outputs/UserCount";
 
 @TypeGraphQL.ObjectType("User", {
@@ -29,7 +30,7 @@ export class User {
   })
   role!: string[];
 
-  applications?: Application[];
+  applications?: UsersOnApplication[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
@@ -40,6 +41,13 @@ export class User {
     nullable: false
   })
   updatedAt!: Date;
+
+  Application?: Application | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  applicationId?: number | null;
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

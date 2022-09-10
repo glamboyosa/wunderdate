@@ -243,9 +243,10 @@ export interface TGQL_ApplicationCreateWithoutCommentsInput {
 	role?: TGQL_PositionCreateNestedOneWithoutApplicationInput;
 	message?: string;
 	status?: "pending" | "accepted" | "rejected";
-	users?: TGQL_UserCreateNestedManyWithoutApplicationsInput;
+	users?: TGQL_UsersOnApplicationCreateNestedManyWithoutApplicationInput;
 	createdAt?: string;
 	updatedAt?: string;
+	User?: TGQL_UserCreateNestedManyWithoutApplicationInput;
 }
 
 export interface TGQL_PositionCreateNestedOneWithoutApplicationInput {
@@ -271,27 +272,103 @@ export interface TGQL_PositionWhereUniqueInput {
 	id?: number;
 }
 
-export interface TGQL_UserCreateNestedManyWithoutApplicationsInput {
-	create?: TGQL_UserCreateWithoutApplicationsInput[];
-	connectOrCreate?: TGQL_UserCreateOrConnectWithoutApplicationsInput[];
-	connect?: TGQL_UserWhereUniqueInput[];
+export interface TGQL_UsersOnApplicationCreateNestedManyWithoutApplicationInput {
+	create?: TGQL_UsersOnApplicationCreateWithoutApplicationInput[];
+	connectOrCreate?: TGQL_UsersOnApplicationCreateOrConnectWithoutApplicationInput[];
+	createMany?: TGQL_UsersOnApplicationCreateManyApplicationInputEnvelope;
+	connect?: TGQL_UsersOnApplicationWhereUniqueInput[];
+}
+
+export interface TGQL_UsersOnApplicationCreateWithoutApplicationInput {
+	user: TGQL_UserCreateNestedOneWithoutApplicationsInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_UserCreateNestedOneWithoutApplicationsInput {
+	create?: TGQL_UserCreateWithoutApplicationsInput;
+	connectOrCreate?: TGQL_UserCreateOrConnectWithoutApplicationsInput;
+	connect?: TGQL_UserWhereUniqueInput;
 }
 
 export interface TGQL_UserCreateWithoutApplicationsInput {
-	email: string;
-	name: string;
+	email?: string;
+	name?: string;
 	role?: TGQL_UserCreateroleInput;
 	createdAt?: string;
 	updatedAt?: string;
+	Application?: TGQL_ApplicationCreateNestedOneWithoutUserInput;
 }
 
 export interface TGQL_UserCreateroleInput {
 	set?: string[];
 }
 
+export interface TGQL_ApplicationCreateNestedOneWithoutUserInput {
+	create?: TGQL_ApplicationCreateWithoutUserInput;
+	connectOrCreate?: TGQL_ApplicationCreateOrConnectWithoutUserInput;
+	connect?: TGQL_ApplicationWhereUniqueInput;
+}
+
+export interface TGQL_ApplicationCreateWithoutUserInput {
+	role?: TGQL_PositionCreateNestedOneWithoutApplicationInput;
+	message?: string;
+	status?: "pending" | "accepted" | "rejected";
+	comments?: TGQL_CommentCreateNestedManyWithoutApplicationInput;
+	users?: TGQL_UsersOnApplicationCreateNestedManyWithoutApplicationInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_CommentCreateNestedManyWithoutApplicationInput {
+	create?: TGQL_CommentCreateWithoutApplicationInput[];
+	connectOrCreate?: TGQL_CommentCreateOrConnectWithoutApplicationInput[];
+	createMany?: TGQL_CommentCreateManyApplicationInputEnvelope;
+	connect?: TGQL_CommentWhereUniqueInput[];
+}
+
+export interface TGQL_CommentCreateWithoutApplicationInput {
+	message: string;
+	from: string;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_CommentCreateOrConnectWithoutApplicationInput {
+	where: TGQL_CommentWhereUniqueInput;
+	create: TGQL_CommentCreateWithoutApplicationInput;
+}
+
+export interface TGQL_CommentWhereUniqueInput {
+	id?: number;
+}
+
+export interface TGQL_CommentCreateManyApplicationInputEnvelope {
+	data?: TGQL_CommentCreateManyApplicationInput[];
+	skipDuplicates?: boolean;
+}
+
+export interface TGQL_CommentCreateManyApplicationInput {
+	id?: number;
+	message: string;
+	from: string;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_ApplicationCreateOrConnectWithoutUserInput {
+	where?: TGQL_ApplicationWhereUniqueInput;
+	create?: TGQL_ApplicationCreateWithoutUserInput;
+}
+
+export interface TGQL_ApplicationWhereUniqueInput {
+	id?: number;
+	roleId?: number;
+}
+
 export interface TGQL_UserCreateOrConnectWithoutApplicationsInput {
-	where: TGQL_UserWhereUniqueInput;
-	create: TGQL_UserCreateWithoutApplicationsInput;
+	where?: TGQL_UserWhereUniqueInput;
+	create?: TGQL_UserCreateWithoutApplicationsInput;
 }
 
 export interface TGQL_UserWhereUniqueInput {
@@ -299,14 +376,119 @@ export interface TGQL_UserWhereUniqueInput {
 	email?: string;
 }
 
+export interface TGQL_UsersOnApplicationCreateOrConnectWithoutApplicationInput {
+	where: TGQL_UsersOnApplicationWhereUniqueInput;
+	create: TGQL_UsersOnApplicationCreateWithoutApplicationInput;
+}
+
+export interface TGQL_UsersOnApplicationWhereUniqueInput {
+	userId_applicationId?: TGQL_UsersOnApplicationUserIdApplicationIdCompoundUniqueInput;
+}
+
+export interface TGQL_UsersOnApplicationUserIdApplicationIdCompoundUniqueInput {
+	userId?: number;
+	applicationId?: number;
+}
+
+export interface TGQL_UsersOnApplicationCreateManyApplicationInputEnvelope {
+	data?: TGQL_UsersOnApplicationCreateManyApplicationInput[];
+	skipDuplicates?: boolean;
+}
+
+export interface TGQL_UsersOnApplicationCreateManyApplicationInput {
+	userId: number;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_UserCreateNestedManyWithoutApplicationInput {
+	create?: TGQL_UserCreateWithoutApplicationInput[];
+	connectOrCreate?: TGQL_UserCreateOrConnectWithoutApplicationInput[];
+	createMany?: TGQL_UserCreateManyApplicationInputEnvelope;
+	connect?: TGQL_UserWhereUniqueInput[];
+}
+
+export interface TGQL_UserCreateWithoutApplicationInput {
+	email: string;
+	name: string;
+	role?: TGQL_UserCreateroleInput;
+	applications?: TGQL_UsersOnApplicationCreateNestedManyWithoutUserInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_UsersOnApplicationCreateNestedManyWithoutUserInput {
+	create?: TGQL_UsersOnApplicationCreateWithoutUserInput[];
+	connectOrCreate?: TGQL_UsersOnApplicationCreateOrConnectWithoutUserInput[];
+	createMany?: TGQL_UsersOnApplicationCreateManyUserInputEnvelope;
+	connect?: TGQL_UsersOnApplicationWhereUniqueInput[];
+}
+
+export interface TGQL_UsersOnApplicationCreateWithoutUserInput {
+	application: TGQL_ApplicationCreateNestedOneWithoutUsersInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_ApplicationCreateNestedOneWithoutUsersInput {
+	create?: TGQL_ApplicationCreateWithoutUsersInput;
+	connectOrCreate?: TGQL_ApplicationCreateOrConnectWithoutUsersInput;
+	connect?: TGQL_ApplicationWhereUniqueInput;
+}
+
+export interface TGQL_ApplicationCreateWithoutUsersInput {
+	role?: TGQL_PositionCreateNestedOneWithoutApplicationInput;
+	message?: string;
+	status?: "pending" | "accepted" | "rejected";
+	comments?: TGQL_CommentCreateNestedManyWithoutApplicationInput;
+	createdAt?: string;
+	updatedAt?: string;
+	User?: TGQL_UserCreateNestedManyWithoutApplicationInput;
+}
+
+export interface TGQL_ApplicationCreateOrConnectWithoutUsersInput {
+	where?: TGQL_ApplicationWhereUniqueInput;
+	create?: TGQL_ApplicationCreateWithoutUsersInput;
+}
+
+export interface TGQL_UsersOnApplicationCreateOrConnectWithoutUserInput {
+	where: TGQL_UsersOnApplicationWhereUniqueInput;
+	create: TGQL_UsersOnApplicationCreateWithoutUserInput;
+}
+
+export interface TGQL_UsersOnApplicationCreateManyUserInputEnvelope {
+	data?: TGQL_UsersOnApplicationCreateManyUserInput[];
+	skipDuplicates?: boolean;
+}
+
+export interface TGQL_UsersOnApplicationCreateManyUserInput {
+	applicationId: number;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface TGQL_UserCreateOrConnectWithoutApplicationInput {
+	where: TGQL_UserWhereUniqueInput;
+	create: TGQL_UserCreateWithoutApplicationInput;
+}
+
+export interface TGQL_UserCreateManyApplicationInputEnvelope {
+	data?: TGQL_UserCreateManyApplicationInput[];
+	skipDuplicates?: boolean;
+}
+
+export interface TGQL_UserCreateManyApplicationInput {
+	id?: number;
+	email: string;
+	name: string;
+	role?: TGQL_UserCreateroleInput;
+	createdAt?: string;
+	updatedAt?: string;
+}
+
 export interface TGQL_ApplicationCreateOrConnectWithoutCommentsInput {
 	where?: TGQL_ApplicationWhereUniqueInput;
 	create?: TGQL_ApplicationCreateWithoutCommentsInput;
-}
-
-export interface TGQL_ApplicationWhereUniqueInput {
-	id?: number;
-	roleId?: number;
 }
 
 export type JSONValue = string | number | boolean | JSONObject | Array<JSONValue>;

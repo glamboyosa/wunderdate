@@ -3,7 +3,9 @@ import { Application } from "../../../models/Application";
 import { Comment } from "../../../models/Comment";
 import { Position } from "../../../models/Position";
 import { User } from "../../../models/User";
+import { UsersOnApplication } from "../../../models/UsersOnApplication";
 import { ApplicationCommentsArgs } from "./args/ApplicationCommentsArgs";
+import { ApplicationUserArgs } from "./args/ApplicationUserArgs";
 import { ApplicationUsersArgs } from "./args/ApplicationUsersArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -31,14 +33,25 @@ export class ApplicationRelationsResolver {
     }).comments(args);
   }
 
-  @TypeGraphQL.FieldResolver(_type => [User], {
+  @TypeGraphQL.FieldResolver(_type => [UsersOnApplication], {
     nullable: false
   })
-  async users(@TypeGraphQL.Root() application: Application, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: ApplicationUsersArgs): Promise<User[]> {
+  async users(@TypeGraphQL.Root() application: Application, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: ApplicationUsersArgs): Promise<UsersOnApplication[]> {
     return getPrismaFromContext(ctx).application.findUnique({
       where: {
         id: application.id,
       },
     }).users(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [User], {
+    nullable: false
+  })
+  async User(@TypeGraphQL.Root() application: Application, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: ApplicationUserArgs): Promise<User[]> {
+    return getPrismaFromContext(ctx).application.findUnique({
+      where: {
+        id: application.id,
+      },
+    }).User(args);
   }
 }

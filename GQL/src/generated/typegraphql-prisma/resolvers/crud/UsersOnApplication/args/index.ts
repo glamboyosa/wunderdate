@@ -1,0 +1,12 @@
+export { AggregateUsersOnApplicationArgs } from "./AggregateUsersOnApplicationArgs";
+export { CreateManyUsersOnApplicationArgs } from "./CreateManyUsersOnApplicationArgs";
+export { CreateOneUsersOnApplicationArgs } from "./CreateOneUsersOnApplicationArgs";
+export { DeleteManyUsersOnApplicationArgs } from "./DeleteManyUsersOnApplicationArgs";
+export { DeleteOneUsersOnApplicationArgs } from "./DeleteOneUsersOnApplicationArgs";
+export { FindFirstUsersOnApplicationArgs } from "./FindFirstUsersOnApplicationArgs";
+export { FindManyUsersOnApplicationArgs } from "./FindManyUsersOnApplicationArgs";
+export { FindUniqueUsersOnApplicationArgs } from "./FindUniqueUsersOnApplicationArgs";
+export { GroupByUsersOnApplicationArgs } from "./GroupByUsersOnApplicationArgs";
+export { UpdateManyUsersOnApplicationArgs } from "./UpdateManyUsersOnApplicationArgs";
+export { UpdateOneUsersOnApplicationArgs } from "./UpdateOneUsersOnApplicationArgs";
+export { UpsertOneUsersOnApplicationArgs } from "./UpsertOneUsersOnApplicationArgs";

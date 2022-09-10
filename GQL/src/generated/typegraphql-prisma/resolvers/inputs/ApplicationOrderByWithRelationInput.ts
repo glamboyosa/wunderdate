@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { CommentOrderByRelationAggregateInput } from "../inputs/CommentOrderByRelationAggregateInput";
 import { PositionOrderByWithRelationInput } from "../inputs/PositionOrderByWithRelationInput";
 import { UserOrderByRelationAggregateInput } from "../inputs/UserOrderByRelationAggregateInput";
+import { UsersOnApplicationOrderByRelationAggregateInput } from "../inputs/UsersOnApplicationOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("ApplicationOrderByWithRelationInput", {
@@ -41,10 +42,10 @@ export class ApplicationOrderByWithRelationInput {
   })
   comments?: CommentOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationOrderByRelationAggregateInput, {
     nullable: true
   })
-  users?: UserOrderByRelationAggregateInput | undefined;
+  users?: UsersOnApplicationOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -55,4 +56,9 @@ export class ApplicationOrderByWithRelationInput {
     nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => UserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  User?: UserOrderByRelationAggregateInput | undefined;
 }

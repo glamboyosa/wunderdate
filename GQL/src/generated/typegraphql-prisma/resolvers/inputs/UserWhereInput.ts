@@ -2,11 +2,13 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationListRelationFilter } from "../inputs/ApplicationListRelationFilter";
+import { ApplicationRelationFilter } from "../inputs/ApplicationRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableListFilter } from "../inputs/StringNullableListFilter";
+import { UsersOnApplicationListRelationFilter } from "../inputs/UsersOnApplicationListRelationFilter";
 
 @TypeGraphQL.InputType("UserWhereInput", {
   isAbstract: true
@@ -47,10 +49,10 @@ export class UserWhereInput {
   })
   role?: StringNullableListFilter | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationListRelationFilter, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationListRelationFilter, {
     nullable: true
   })
-  applications?: ApplicationListRelationFilter | undefined;
+  applications?: UsersOnApplicationListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
@@ -61,4 +63,14 @@ export class UserWhereInput {
     nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ApplicationRelationFilter, {
+    nullable: true
+  })
+  Application?: ApplicationRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntNullableFilter, {
+    nullable: true
+  })
+  applicationId?: IntNullableFilter | undefined;
 }

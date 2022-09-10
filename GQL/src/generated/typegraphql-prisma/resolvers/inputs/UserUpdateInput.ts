@@ -2,10 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationUpdateManyWithoutUsersNestedInput } from "../inputs/ApplicationUpdateManyWithoutUsersNestedInput";
+import { ApplicationUpdateOneWithoutUserNestedInput } from "../inputs/ApplicationUpdateOneWithoutUserNestedInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { UserUpdateroleInput } from "../inputs/UserUpdateroleInput";
+import { UsersOnApplicationUpdateManyWithoutUserNestedInput } from "../inputs/UsersOnApplicationUpdateManyWithoutUserNestedInput";
 
 @TypeGraphQL.InputType("UserUpdateInput", {
   isAbstract: true
@@ -26,10 +27,10 @@ export class UserUpdateInput {
   })
   role?: UserUpdateroleInput | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationUpdateManyWithoutUsersNestedInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationUpdateManyWithoutUserNestedInput, {
     nullable: true
   })
-  applications?: ApplicationUpdateManyWithoutUsersNestedInput | undefined;
+  applications?: UsersOnApplicationUpdateManyWithoutUserNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
@@ -40,4 +41,9 @@ export class UserUpdateInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ApplicationUpdateOneWithoutUserNestedInput, {
+    nullable: true
+  })
+  Application?: ApplicationUpdateOneWithoutUserNestedInput | undefined;
 }

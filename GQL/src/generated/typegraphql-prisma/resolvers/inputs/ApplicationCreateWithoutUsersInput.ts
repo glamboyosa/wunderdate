@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CommentCreateNestedManyWithoutApplicationInput } from "../inputs/CommentCreateNestedManyWithoutApplicationInput";
 import { PositionCreateNestedOneWithoutApplicationInput } from "../inputs/PositionCreateNestedOneWithoutApplicationInput";
+import { UserCreateNestedManyWithoutApplicationInput } from "../inputs/UserCreateNestedManyWithoutApplicationInput";
 import { Status } from "../../enums/Status";
 
 @TypeGraphQL.InputType("ApplicationCreateWithoutUsersInput", {
@@ -39,4 +40,9 @@ export class ApplicationCreateWithoutUsersInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedManyWithoutApplicationInput, {
+    nullable: true
+  })
+  User?: UserCreateNestedManyWithoutApplicationInput | undefined;
 }

@@ -2,8 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ApplicationCreateNestedManyWithoutUsersInput } from "../inputs/ApplicationCreateNestedManyWithoutUsersInput";
+import { ApplicationCreateNestedOneWithoutUserInput } from "../inputs/ApplicationCreateNestedOneWithoutUserInput";
 import { UserCreateroleInput } from "../inputs/UserCreateroleInput";
+import { UsersOnApplicationCreateNestedManyWithoutUserInput } from "../inputs/UsersOnApplicationCreateNestedManyWithoutUserInput";
 
 @TypeGraphQL.InputType("UserCreateInput", {
   isAbstract: true
@@ -24,10 +25,10 @@ export class UserCreateInput {
   })
   role?: UserCreateroleInput | undefined;
 
-  @TypeGraphQL.Field(_type => ApplicationCreateNestedManyWithoutUsersInput, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  applications?: ApplicationCreateNestedManyWithoutUsersInput | undefined;
+  applications?: UsersOnApplicationCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
@@ -38,4 +39,9 @@ export class UserCreateInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => ApplicationCreateNestedOneWithoutUserInput, {
+    nullable: true
+  })
+  Application?: ApplicationCreateNestedOneWithoutUserInput | undefined;
 }

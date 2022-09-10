@@ -9,6 +9,7 @@ import { IntFilter } from "../inputs/IntFilter";
 import { PositionRelationFilter } from "../inputs/PositionRelationFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { UserListRelationFilter } from "../inputs/UserListRelationFilter";
+import { UsersOnApplicationListRelationFilter } from "../inputs/UsersOnApplicationListRelationFilter";
 
 @TypeGraphQL.InputType("ApplicationWhereInput", {
   isAbstract: true
@@ -59,10 +60,10 @@ export class ApplicationWhereInput {
   })
   comments?: CommentListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserListRelationFilter, {
+  @TypeGraphQL.Field(_type => UsersOnApplicationListRelationFilter, {
     nullable: true
   })
-  users?: UserListRelationFilter | undefined;
+  users?: UsersOnApplicationListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
@@ -73,4 +74,9 @@ export class ApplicationWhereInput {
     nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => UserListRelationFilter, {
+    nullable: true
+  })
+  User?: UserListRelationFilter | undefined;
 }
