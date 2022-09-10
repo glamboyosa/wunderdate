@@ -5,7 +5,7 @@ import {
   SubscriptionConfiguration,
 } from '@wundergraph/sdk'
 import type { OperationsConfiguration } from './generated/wundergraph.operations'
-const enableAuth = <
+const enableAuthAndLiveQuerying = <
   Configs extends
     | QueryConfiguration
     | MutationConfiguration
@@ -24,7 +24,7 @@ const enableAuth = <
     },
   }
 }
-const enableAuthAndLiveQuerying = <
+const enableAuth = <
   Configs extends
     | QueryConfiguration
     | MutationConfiguration

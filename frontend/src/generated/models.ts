@@ -123,6 +123,7 @@ export interface ProtectedGetApplicationResponseData {
 			userId?: number;
 			user?: {
 				name?: string;
+				email?: string;
 			};
 		}[];
 		role?: {

@@ -48,7 +48,7 @@ const defaultWunderGraphContextProperties: WunderGraphContextProperties<Role> = 
 	ssrCache: {},
 	client: null,
 	clientConfig: {
-		applicationHash: "bdb64ff9",
+		applicationHash: "b91a8228",
 		applicationPath: "app/main",
 		baseURL: "http://localhost:9991",
 		sdkVersion: "0.100.0",
@@ -154,44 +154,13 @@ export const useMutation = {
 export const useSubscription = {};
 
 export const useLiveQuery = {
-	ProtectedGetApplication: (args: SubscriptionArgsWithInput<ProtectedGetApplicationInput>) =>
-		hooks.useSubscriptionWithInput<ProtectedGetApplicationInput, ProtectedGetApplicationResponseData, Role>(
-			WunderGraphContext,
-			{
-				operationName: "ProtectedGetApplication",
-				requiresAuthentication: true,
-				isLiveQuery: true,
-			}
-		)(args),
-	ProtectedGetApplicationsWithQuery: (args: SubscriptionArgsWithInput<ProtectedGetApplicationsWithQueryInput>) =>
+	ProtectedGetCommentsForApplication: (args: SubscriptionArgsWithInput<ProtectedGetCommentsForApplicationInput>) =>
 		hooks.useSubscriptionWithInput<
-			ProtectedGetApplicationsWithQueryInput,
-			ProtectedGetApplicationsWithQueryResponseData,
+			ProtectedGetCommentsForApplicationInput,
+			ProtectedGetCommentsForApplicationResponseData,
 			Role
 		>(WunderGraphContext, {
-			operationName: "ProtectedGetApplicationsWithQuery",
-			requiresAuthentication: true,
-			isLiveQuery: true,
-		})(args),
-	ProtectedGetPositionsWithQuery: (args: SubscriptionArgsWithInput<ProtectedGetPositionsWithQueryInput>) =>
-		hooks.useSubscriptionWithInput<
-			ProtectedGetPositionsWithQueryInput,
-			ProtectedGetPositionsWithQueryResponseData,
-			Role
-		>(WunderGraphContext, {
-			operationName: "ProtectedGetPositionsWithQuery",
-			requiresAuthentication: true,
-			isLiveQuery: true,
-		})(args),
-	ProtectedGetApplications: (args?: SubscriptionArgs) =>
-		hooks.useSubscriptionWithoutInput<ProtectedGetApplicationsResponseData, Role>(WunderGraphContext, {
-			operationName: "ProtectedGetApplications",
-			requiresAuthentication: true,
-			isLiveQuery: true,
-		})(args),
-	ProtectedGetPositions: (args?: SubscriptionArgs) =>
-		hooks.useSubscriptionWithoutInput<ProtectedGetPositionsResponseData, Role>(WunderGraphContext, {
-			operationName: "ProtectedGetPositions",
+			operationName: "ProtectedGetCommentsForApplication",
 			requiresAuthentication: true,
 			isLiveQuery: true,
 		})(args),

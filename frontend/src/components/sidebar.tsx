@@ -13,7 +13,7 @@ const Sidebar = () => {
       <span
         onClick={() => push(applicationRoute)}
         className={
-          pathname === applicationRoute
+          pathname.includes(applicationRoute)
             ? 'text-lg mb-3  p-3 rounded-md  bg-brightRedSupLight'
             : 'text-lg mb-3'
         }
@@ -23,7 +23,7 @@ const Sidebar = () => {
       <span
         onClick={() => push(positionRoute)}
         className={
-          pathname === positionRoute
+          pathname.includes(positionRoute)
             ? 'text-lg p-3 rounded-md  bg-brightRedSupLight'
             : 'text-lg'
         }

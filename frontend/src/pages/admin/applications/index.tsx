@@ -4,12 +4,12 @@ import {
   useWunderGraph,
   withWunderGraph,
   useQuery,
-} from '../../generated/nextjs'
-import ApplicationCard from '../../components/applicationCard'
-import Sidebar from '../../components/sidebar'
-import Main from '../../components/main'
+} from '../../../generated/nextjs'
+import ApplicationCard from '../../../components/applicationCard'
+import Sidebar from '../../../components/sidebar'
+import Main from '../../../components/main'
 import { useRouter } from 'next/router'
-const Positions: NextPage = () => {
+const Applications: NextPage = () => {
   const { query } = useRouter()
   const jid = query.jid as string
   let data: (JSX.Element[] | undefined)[] | undefined = undefined
@@ -23,6 +23,7 @@ const Positions: NextPage = () => {
       return application.users?.map((user) => (
         <ApplicationCard
           key={application.id}
+          id={application.id!}
           name={user.user?.name!}
           position={application.role?.name}
         />
@@ -33,6 +34,7 @@ const Positions: NextPage = () => {
       return application.users?.map((user) => (
         <ApplicationCard
           key={application.id}
+          id={application.id!}
           name={user.user?.name!}
           position={application.role?.name}
         />
@@ -42,7 +44,7 @@ const Positions: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Wunderdate - Positions</title>
+        <title>Wunderdate - Applications</title>
       </Head>
       <div className=" p-5 shadow-lg bg-white rounded-md">
         <div className="grid grid-cols-rf gap-0.5 min-h-[600px] w-full">
@@ -54,4 +56,4 @@ const Positions: NextPage = () => {
   )
 }
 
-export default withWunderGraph(Positions)
+export default withWunderGraph(Applications)
