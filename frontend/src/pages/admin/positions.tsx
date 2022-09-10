@@ -27,6 +27,7 @@ const Positions: NextPage = () => {
                 return (
                   <PositionCard
                     key={position.id}
+                    jid={position.id!}
                     name={position.name!}
                     description={position.description!}
                     count={position.application?.length!}
