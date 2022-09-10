@@ -30,16 +30,13 @@ const Application: NextPage = () => {
   const { result: res } = useLiveQuery.ProtectedGetCommentsForApplication({
     input: { applicationId: Number(id) },
   })
-  const { mutate } = useMutation.ProtectedCreateCommentMutation()
+  const { mutate: createCommentMutation } =
+    useMutation.ProtectedCreateCommentMutation()
+  const { mutate: updateApplicationMutation } =
+    useMutation.ProtectedUpdateApplicationMutation()
   const [commentSelected, setCommentSelected] = useState(false)
   const input = useRef<TInputRef>(undefined!)
-  console.log(res)
-  if (
-    result.status === 'ok' &&
-    res.status === 'ok' &&
-    !res.data.getCommentsForApplication.length &&
-    !commentSelected
-  ) {
+  if (result.status === 'ok' && res.status === 'ok' && !commentSelected) {
     data = result.data.getApplication?.users?.map((user) => (
       <>
         <h1 className="text-4xl mt-3 mb-3 md:text-6xl">{user.user?.name}</h1>
@@ -74,19 +71,30 @@ const Application: NextPage = () => {
           email={user.user?.email!}
         />
         <div className="flex  justify-center gap-2 mt-4 items-center">
-          <button className="bg-brightRedSupLight rounded-sm py-2 px-3 mb-2 text-base  md:text-2xl">
+          <button
+            onClick={acceptHandler}
+            className="bg-brightRedSupLight rounded-sm py-2 px-3 mb-2 text-base  md:text-2xl"
+          >
             Accept
           </button>
-          <button className="bg-veryLightGray border-black border-double border-2 rounded-sm py-2 px-3 mb-2 text-base  md:text-2xl">
+          <button
+            onClick={rejectHandler}
+            className="bg-veryLightGray border-black border-double border-2 rounded-sm py-2 px-3 mb-2 text-base  md:text-2xl"
+          >
             Reject
           </button>
         </div>
       </>
     ))
-  } else if (result.status === 'ok' && res.status === 'ok') {
+  } else if (result.status === 'ok' && res.status === 'ok' && commentSelected) {
     data = (
       <div className="mt-3 overflow-y-scroll">
-        <div className="text-xl mb-3 cursor-pointer">&larr;</div>
+        <div
+          onClick={() => setCommentSelected(false)}
+          className="text-xl mb-3 cursor-pointer"
+        >
+          &larr;
+        </div>
         {res.data.getCommentsForApplication.map((comment) => (
           <div key={comment.id}>
             <Message
@@ -121,15 +129,7 @@ const Application: NextPage = () => {
   }
   const submitCommentHandler = async () => {
     try {
-      console.log({
-        applicationId: Number(id),
-        commentInput: {
-          message: input.current.value,
-          application: {},
-          from: user?.name!,
-        },
-      })
-      const datum = await mutate({
+      await createCommentMutation({
         input: {
           applicationId: Number(id),
           commentInput: {
@@ -143,12 +143,40 @@ const Application: NextPage = () => {
           },
         },
       })
-      console.log(datum)
       input.current.value = ''
     } catch (e) {
       console.error(e)
     }
   }
+  const acceptHandler = async () => {
+    const applicationId = id as string
+    try {
+      await updateApplicationMutation({
+        input: {
+          open: false,
+          status: 'accepted',
+          updateApplicationId: Number(applicationId),
+        },
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+  const rejectHandler = async () => {
+    const applicationId = id as string
+    try {
+      await updateApplicationMutation({
+        input: {
+          open: true,
+          status: 'rejected',
+          updateApplicationId: Number(applicationId),
+        },
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <>
       <Head>
@@ -163,22 +191,24 @@ const Application: NextPage = () => {
           <Sidebar />
           <Main appPage>
             {data}
-            <div className=" w-full flex gap-3 justify-center items-center md:left-[1%]">
-              <Input ref={input} />
-              <button
-                onClick={submitCommentHandler}
-                className="bg-green-600 flex gap-2 mt-2  rounded-md py-2 px-3 mb-2 text-base  md:text-2xl"
-              >
-                Send{' '}
-                <span>
-                  <PaperPlaneIcon
-                    className="rotate-[-30deg]"
-                    width={30}
-                    height={30}
-                  />
-                </span>
-              </button>
-            </div>
+            {commentSelected && (
+              <div className=" w-full flex gap-3 justify-center items-center md:left-[1%]">
+                <Input ref={input} />
+                <button
+                  onClick={submitCommentHandler}
+                  className="bg-green-600 flex gap-2 mt-2  rounded-md py-2 px-3 mb-2 text-base  md:text-2xl"
+                >
+                  Send{' '}
+                  <span>
+                    <PaperPlaneIcon
+                      className="rotate-[-30deg]"
+                      width={30}
+                      height={30}
+                    />
+                  </span>
+                </button>
+              </div>
+            )}
           </Main>
         </div>
       </div>
