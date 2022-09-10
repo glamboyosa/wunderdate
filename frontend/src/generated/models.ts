@@ -120,9 +120,11 @@ export interface ProtectedGetApplicationResponseData {
 		message?: string;
 		status?: string;
 		users?: {
-			name?: string;
-			email?: string;
-		};
+			userId?: number;
+			user?: {
+				name?: string;
+			};
+		}[];
 		role?: {
 			description?: string;
 			id?: number;
@@ -137,9 +139,11 @@ export interface ProtectedGetApplicationsResponseData {
 		message?: string;
 		status?: string;
 		users?: {
-			name?: string;
-			email?: string;
-		};
+			userId?: number;
+			user?: {
+				name?: string;
+			};
+		}[];
 		role?: {
 			id?: number;
 			name?: string;
@@ -153,9 +157,11 @@ export interface ProtectedGetApplicationsWithQueryResponseData {
 		message?: string;
 		status?: string;
 		users?: {
-			name?: string;
-			email?: string;
-		};
+			userId?: number;
+			user?: {
+				name?: string;
+			};
+		}[];
 		role?: {
 			description?: string;
 			id?: number;

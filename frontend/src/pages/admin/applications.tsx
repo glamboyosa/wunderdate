@@ -28,35 +28,14 @@ const Positions: NextPage = () => {
           <Main>
             {result.status === 'ok' &&
               result.data.getApplications?.map((application) => {
-                return (
+                return application.users?.map((user) => (
                   <ApplicationCard
                     key={application.id}
-                    name={'Jim Jones II'}
+                    name={user.user?.name!}
                     position={application.role?.name}
                   />
-                )
+                ))
               })}
-
-            {/* <ApplicationCard
-              name="Jim Jones II"
-              position="Full Stack Engineer – Core"
-            />
-            <ApplicationCard
-              name="Jim Jones II"
-              position="Full Stack Engineer – Core"
-            />
-            <ApplicationCard
-              name="Jim Jones II"
-              position="Full Stack Engineer – Core"
-            />
-            <ApplicationCard
-              name="Jim Jones II"
-              position="Full Stack Engineer – Core"
-            />
-            <ApplicationCard
-              name="Jim Jones II"
-              position="Full Stack Engineer – Core"
-            /> */}
           </Main>
         </div>
       </div>

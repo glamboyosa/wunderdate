@@ -16,6 +16,9 @@ interface IApplicationParam {
 interface IPositionQuery {
   open: boolean
 }
+interface IUsersOnApplicationQuery {
+  applicationId: number
+}
 interface IApplicationBody {
   open: boolean
   id: number
@@ -30,8 +33,8 @@ const User = objectType({
     t.list.field('role', {
       type: 'String',
     })
-    t.list.field('role', {
-      type: Application,
+    t.list.field('applications', {
+      type: UsersOnApplication,
     })
   },
 })
@@ -45,8 +48,17 @@ const Application = objectType({
     t.field('role', {
       type: Position,
     })
-    t.field('users', { type: User })
+    t.list.field('users', { type: UsersOnApplication })
     t.list.field('comments', { type: Comment })
+  },
+})
+const UsersOnApplication = objectType({
+  name: 'UsersOnApplication',
+  definition(t) {
+    t.int('userId')
+    t.int('applicationId')
+    t.field('user', { type: User })
+    t.field('application', { type: Application })
   },
 })
 const Position = objectType({
@@ -79,7 +91,11 @@ const Query = extendType({
         return ctx.prisma.application.findMany({
           include: {
             comments: true,
-            users: true,
+            users: {
+              include: {
+                user: true,
+              },
+            },
             role: true,
           },
         })
@@ -95,7 +111,11 @@ const Query = extendType({
           where: { id },
           include: {
             comments: true,
-            users: true,
+            users: {
+              include: {
+                user: true,
+              },
+            },
             role: true,
           },
         })
@@ -113,7 +133,11 @@ const Query = extendType({
           },
           include: {
             comments: true,
-            users: true,
+            users: {
+              include: {
+                user: true,
+              },
+            },
             role: true,
           },
         })
@@ -141,6 +165,27 @@ const Query = extendType({
           },
           include: {
             application: true,
+          },
+        })
+      },
+    })
+    t.field('getUsersOnApplication', {
+      type: UsersOnApplication,
+      args: {
+        applicationId: nonNull(intArg()),
+      },
+      resolve: (
+        _,
+        { applicationId }: IUsersOnApplicationQuery,
+        ctx: context,
+      ) => {
+        return ctx.prisma.usersOnApplication.findFirst({
+          where: {
+            applicationId,
+          },
+          include: {
+            application: true,
+            user: true,
           },
         })
       },

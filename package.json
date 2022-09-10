@@ -4,6 +4,7 @@
   "scripts": {
     "start": "wunderctl up --debug",
     "generate": "prisma generate",
+    "seed": "ts-node script.ts",
     "migrate:seed": "npx prisma migrate dev && ts-node script.ts",
     "reset:seed": "npx prisma migrate reset && ts-node script.ts",
     "kill:nexus": "kill -9 $(lsof -t -i:4000)",

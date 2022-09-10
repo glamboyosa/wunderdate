@@ -9,7 +9,7 @@ type Application {
   role: Position
   roleId: Int
   status: String
-  users: User
+  users: [UsersOnApplication]
 }
 
 type Comment {
@@ -38,11 +38,20 @@ type Query {
   getApplicationsWithQuery(roleId: Int!): [Application]
   getPositions: [Position]
   getPositionsWithQuery(open: Boolean!): [Position]
+  getUsersOnApplication(applicationId: Int!): UsersOnApplication
 }
 
 type User {
+  applications: [UsersOnApplication]
   email: String
   id: Int
   name: String
-  role: [Application]
+  role: [String]
+}
+
+type UsersOnApplication {
+  application: Application
+  applicationId: Int
+  user: User
+  userId: Int
 }
