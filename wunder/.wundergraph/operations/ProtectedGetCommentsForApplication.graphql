@@ -1,6 +1,6 @@
 query ($applicationId: Float!) @rbac(requireMatchAll: [admin]) {
   getCommentsForApplication: TGQL_getCommentsForApplication(
-    applicationId: $applicationId
+    ApplicationId: $applicationId
   ) {
     id
     message
