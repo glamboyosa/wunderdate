@@ -1,16 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import {
-  useWunderGraph,
-  withWunderGraph,
-  useQuery,
-} from '../../generated/nextjs'
+import { withWunderGraph, useQuery } from '../../generated/nextjs'
 import PositionCard from '../../components/positionCard'
 import ApplicationCard from '../../components/applicationCard'
 import Sidebar from '../../components/sidebar'
 import Main from '../../components/main'
+import Loader from '../../components/loader'
 const Positions: NextPage = () => {
-  const { user } = useWunderGraph()
   const { result } = useQuery.ProtectedGetPositions()
   return (
     <>
@@ -22,7 +18,7 @@ const Positions: NextPage = () => {
           <Sidebar />
 
           <Main>
-            {result.status === 'ok' &&
+            {result.status === 'ok' ? (
               result.data.getPositions?.map((position) => {
                 return (
                   <PositionCard
@@ -33,7 +29,10 @@ const Positions: NextPage = () => {
                     count={position.application?.length!}
                   />
                 )
-              })}
+              })
+            ) : (
+              <Loader />
+            )}
           </Main>
         </div>
       </div>

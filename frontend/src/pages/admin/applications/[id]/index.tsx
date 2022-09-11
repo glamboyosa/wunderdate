@@ -14,17 +14,22 @@ import {
 import Sidebar from '../../../../components/sidebar'
 import Main from '../../../../components/main'
 import ApplicationDetailsCard from '../../../../components/applicationDetails'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Message from '../../../../components/message'
 import { TInputRef } from '../../../../utils/types'
 import Input from '../../../../components/input'
+import { randomMesage, randomName } from '../../../../utils/randoms'
+import Loader from '../../../../components/loader'
 const Application: NextPage = () => {
   const { query } = useRouter()
   let { id } = query
   id = id as string
   const date = new Date(Date.now())
-  let data: (JSX.Element[] | undefined) | undefined | React.ReactNode =
-    undefined
+  let data:
+    | React.ReactNode[]
+    | JSX.Element
+    | (Element[] | undefined)[]
+    | undefined = <Loader appPage />
   const { user } = useWunderGraph()
   const { result } = useQuery.ProtectedGetApplication({
     input: { id: Number(id) },
@@ -38,6 +43,7 @@ const Application: NextPage = () => {
     useMutation.ProtectedUpdateApplicationMutation()
   const [commentSelected, setCommentSelected] = useState(false)
   const input = useRef<TInputRef>(undefined!)
+  const seeded = useRef(false)
   if (result.status === 'ok' && res.status === 'ok' && !commentSelected) {
     data = result.data.getApplication?.users?.map((user) => (
       <div key={user.userId}>
@@ -186,7 +192,44 @@ const Application: NextPage = () => {
       console.error(e)
     }
   }
-
+  // useEffect for seeding our DB with some comments leveraging Wundergraph
+  useEffect(() => {
+    if (user && !seeded.current) {
+      Promise.all([
+        createCommentMutation({
+          input: {
+            applicationId: Number(id),
+            commentInput: {
+              message: randomMesage(),
+              application: {
+                connect: {
+                  id: Number(id),
+                },
+              },
+              from: randomName(),
+            },
+          },
+        }),
+        createCommentMutation({
+          input: {
+            applicationId: Number(id),
+            commentInput: {
+              message: randomMesage(),
+              application: {
+                connect: {
+                  id: Number(id),
+                },
+              },
+              from: randomName(),
+            },
+          },
+        }),
+      ])
+        .then((el) => console.log('Seed', el))
+        .catch((e) => console.error(e))
+      seeded.current = true
+    }
+  }, [user])
   return (
     <>
       <Head>

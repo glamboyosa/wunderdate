@@ -9,16 +9,20 @@ import ApplicationCard from '../../../components/applicationCard'
 import Sidebar from '../../../components/sidebar'
 import Main from '../../../components/main'
 import { useRouter } from 'next/router'
+import Loader from '../../../components/loader'
 const Applications: NextPage = () => {
   const { query } = useRouter()
   const jid = query.jid as string
-  let data: (JSX.Element[] | undefined)[] | undefined = undefined
+  let data:
+    | React.ReactNode[]
+    | JSX.Element
+    | (Element[] | undefined)[]
+    | undefined = <Loader />
   const { result } = useQuery.ProtectedGetApplications()
   const { result: res } = useQuery.ProtectedGetApplicationsWithQuery({
     input: { roleId: Number(jid) },
   })
   if (result.status === 'ok' && res.status !== 'ok') {
-    console.log('Booyahh')
     data = result.data.getApplications?.map((application) => {
       return application.users?.map((user) => (
         <ApplicationCard
