@@ -1,15 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import {
-  useWunderGraph,
-  withWunderGraph,
-  useQuery,
-} from '../../../generated/nextjs'
+import { withWunderGraph, useQuery } from '../../../generated/nextjs'
 import ApplicationCard from '../../../components/applicationCard'
 import Sidebar from '../../../components/sidebar'
 import Main from '../../../components/main'
 import { useRouter } from 'next/router'
 import Loader from '../../../components/loader'
+import { useEffect } from 'react'
 const Applications: NextPage = () => {
   const { query } = useRouter()
   const jid = query.jid as string
@@ -18,10 +15,11 @@ const Applications: NextPage = () => {
     | JSX.Element
     | (Element[] | undefined)[]
     | undefined = <Loader />
-  const { result } = useQuery.ProtectedGetApplications()
-  const { result: res } = useQuery.ProtectedGetApplicationsWithQuery({
-    input: { roleId: Number(jid) },
-  })
+  const { result, refetch } = useQuery.ProtectedGetApplications()
+  const { result: res, refetch: refetchSecondQuery } =
+    useQuery.ProtectedGetApplicationsWithQuery({
+      input: { roleId: Number(jid) },
+    })
   if (result.status === 'ok' && res.status !== 'ok') {
     data = result.data.getApplications?.map((application) => {
       return application.users?.map((user) => (
@@ -45,6 +43,13 @@ const Applications: NextPage = () => {
       ))
     })
   }
+  // fetch client side to ensure we always have data
+  useEffect(() => {
+    refetch()
+    refetchSecondQuery({
+      input: { roleId: Number(jid) },
+    })
+  }, [])
   return (
     <>
       <Head>
