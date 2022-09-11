@@ -1,6 +1,9 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { PaperPlaneIcon } from '@radix-ui/react-icons'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useRouter } from 'next/router'
 import {
   withWunderGraph,
   useQuery,
@@ -10,14 +13,13 @@ import {
 } from '../../../../generated/nextjs'
 import Sidebar from '../../../../components/sidebar'
 import Main from '../../../../components/main'
-import { useRouter } from 'next/router'
 import ApplicationDetailsCard from '../../../../components/applicationDetails'
 import { useRef, useState } from 'react'
 import Message from '../../../../components/message'
 import { TInputRef } from '../../../../utils/types'
 import Input from '../../../../components/input'
 const Application: NextPage = () => {
-  const { query, back } = useRouter()
+  const { query } = useRouter()
   let { id } = query
   id = id as string
   const date = new Date(Date.now())
@@ -38,7 +40,7 @@ const Application: NextPage = () => {
   const input = useRef<TInputRef>(undefined!)
   if (result.status === 'ok' && res.status === 'ok' && !commentSelected) {
     data = result.data.getApplication?.users?.map((user) => (
-      <>
+      <div key={user.userId}>
         <h1 className="text-4xl mt-3 mb-3 md:text-6xl">{user.user?.name}</h1>
         <h1 className="text-2xl mt-3 mb-4 text-gray-500 md:text-4xl">
           {result.data.getApplication?.role?.name}
@@ -84,7 +86,7 @@ const Application: NextPage = () => {
             Reject
           </button>
         </div>
-      </>
+      </div>
     ))
   } else if (result.status === 'ok' && res.status === 'ok' && commentSelected) {
     data = (
@@ -127,7 +129,7 @@ const Application: NextPage = () => {
       </div>
     )
   }
-  const submitCommentHandler = async () => {
+  async function submitCommentHandler() {
     try {
       await createCommentMutation({
         input: {
@@ -148,7 +150,7 @@ const Application: NextPage = () => {
       console.error(e)
     }
   }
-  const acceptHandler = async () => {
+  async function acceptHandler() {
     const applicationId = id as string
     try {
       await updateApplicationMutation({
@@ -158,11 +160,15 @@ const Application: NextPage = () => {
           updateApplicationId: Number(applicationId),
         },
       })
+      toast('Application accepted', {
+        type: 'success',
+        bodyClassName: 'font-Rampart',
+      })
     } catch (e) {
       console.error(e)
     }
   }
-  const rejectHandler = async () => {
+  async function rejectHandler() {
     const applicationId = id as string
     try {
       await updateApplicationMutation({
@@ -171,6 +177,10 @@ const Application: NextPage = () => {
           status: 'rejected',
           updateApplicationId: Number(applicationId),
         },
+      })
+      toast('Application rejected', {
+        type: 'warning',
+        bodyClassName: 'font-Rampart',
       })
     } catch (e) {
       console.error(e)
@@ -212,6 +222,7 @@ const Application: NextPage = () => {
           </Main>
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 }
