@@ -2,10 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useWunderGraph, withWunderGraph } from '../generated/nextjs'
 import { useLoggedInStore, useUsernameStore } from '../utils/store'
-type TNavProps = {
-  isLoggedIn: boolean
-  name: string
-}
+
 const Nav = () => {
   const { logout } = useWunderGraph()
   const { push } = useRouter()

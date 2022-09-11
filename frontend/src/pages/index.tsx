@@ -5,13 +5,12 @@ import Head from 'next/head'
 import { useWunderGraph, withWunderGraph } from '../generated/nextjs'
 const Home: NextPage = () => {
   const { user } = useWunderGraph()
-  console.log(user)
   const { push } = useRouter()
   useEffect(() => {
     if (!user) {
       push('/login')
     } else {
-      push('/admin/positions')
+      push('/admin/applications')
     }
   }, [user])
   return (

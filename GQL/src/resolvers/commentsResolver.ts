@@ -21,7 +21,6 @@ export class CommentsResolver {
     @Arg('ApplicationId') applicationId: number,
     @Ctx() { prisma }: context,
   ): Promise<Comment> {
-    console.log(inputData)
     const dt = inputData as { from: string; message: string; application: any }
     delete dt.application
     const data = {
