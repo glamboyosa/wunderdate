@@ -27,8 +27,8 @@ WunderDate is a candidate management web application that demos how easy it is t
 
 This application has three services:
 
-- GQL: This is a TypeGraphQL server responsible for the commenting functionality.
-- Nexus: This is a Nexus GraphQL server responsible for the applications and positions functionality.
+- GQL: This is a TypeGraphQL server responsible for the commenting functionality. It implements logic for getting all comments for a candidates application and for leaving comments on an application. 
+- Nexus: This is a Nexus GraphQL server responsible for the applications and positions functionality. It implements all the functionality for getting all applications and all open positions. 
 - Wunder: The app relies on WunderGraphs built-in authentication mechanism to handle authenication and authorization.
 
 It uses PostgreSQL via Prisma as it's DB. Hosted on [railway](https://railway.app).
