@@ -20,6 +20,7 @@ import { TInputRef } from '../../../../utils/types'
 import Input from '../../../../components/input'
 import { randomMesage, randomName } from '../../../../utils/randoms'
 import Loader from '../../../../components/loader'
+import { transformDates } from '../../../../utils/transformDates'
 const Application: NextPage = () => {
   const { query } = useRouter()
   let { id } = query
@@ -116,19 +117,7 @@ const Application: NextPage = () => {
               }`}
             >
               <p>{comment.from}</p>
-              <p>
-                {new Intl.DateTimeFormat('en-GB').format(date) ===
-                new Intl.DateTimeFormat('en-GB').format(
-                  new Date(comment.createdAt),
-                )
-                  ? new Intl.DateTimeFormat('en-GB', {
-                      timeStyle: 'short',
-                    }).format(new Date(comment.createdAt))
-                  : new Intl.DateTimeFormat('en-GB', {
-                      dateStyle: 'short',
-                      timeStyle: 'short',
-                    }).format(new Date(comment.createdAt))}
-              </p>
+              <p>{transformDates(date, comment.createdAt)}</p>
             </div>
           </div>
         ))}
