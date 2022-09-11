@@ -264,13 +264,6 @@ async function main() {
       await prisma.user.create({
         data: user,
       })
-      const uoa = await prisma.usersOnApplication.findMany({
-        include: {
-          application: true,
-          user: true,
-        },
-      })
-      console.log(uoa)
       await prisma.$disconnect()
       console.log('Successfully seeded DB 😄')
     })

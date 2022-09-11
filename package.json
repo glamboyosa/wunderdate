@@ -12,10 +12,11 @@
     "kill:all": "npm run kill:nexus && npm run kill:tgql",
     "dev:nexus": "cd nexus && npm run dev",
     "dev:tgql": "cd GQL && npm run dev",
-    "gen:wunder": "cd wunder && npm run generate",
+    "gen:wunder": "cd wunder && npm run generate && cd ..",
     "dev:wunder": "cd wunder && npm start",
     "dev:frontend": "cd frontend && npm run dev",
-    "dev:all": "concurrently \"npm run dev:nexus\" \"npm run dev:tgql\" \"npm run gen:wunder\" \"npm run dev:wunder\" \"npm run dev:frontend\"",
+    "dev:graphdeps": "concurrently \"npm run dev:nexus\" \"npm run dev:tgql\"",
+    "dev:stack": "npm run gen:wunder && concurrently \"npm run dev:wunder\" \"npm run dev:frontend\"",
     "install:deps": "npm install && cd nexus && npm install && cd .. && cd GQL && npm install && cd .. && cd wunder && npm install && cd .. && cd frontend && npm install && cd ..",
     "check": "tsc"
   },
