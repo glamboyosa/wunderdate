@@ -2,14 +2,21 @@
   "name": "wunderdate",
   "version": "1.0.0",
   "scripts": {
-    "start": "wunderctl up --debug",
     "generate": "prisma generate",
     "seed": "ts-node script.ts",
     "migrate:seed": "npx prisma migrate dev && ts-node script.ts",
     "reset:seed": "npx prisma migrate reset && ts-node script.ts",
     "kill:nexus": "kill -9 $(lsof -t -i:4000)",
     "kill:tgql": "kill -9 $(lsof -t -i:8000)",
+    "dev": "npm run kill:nexus && npm run kill:tgql && concurrently \"npm run nexus\" \"npm run tgql\"",
     "kill:all": "npm run kill:nexus && npm run kill:tgql",
+    "dev:nexus": "cd nexus && npm run dev",
+    "dev:tgql": "cd GQL && npm run dev",
+    "gen:wunder": "cd wunder && npm run generate",
+    "dev:wunder": "cd wunder && npm start",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:all": "concurrently \"npm run dev:nexus\" \"npm run dev:tgql\" \"npm run gen:wunder\" \"npm run dev:wunder\" \"npm run dev:frontend\"",
+    "install:deps": "npm install && cd nexus && npm install && cd .. && cd GQL && npm install && cd .. && cd wunder && npm install && cd .. && cd frontend && npm install && cd ..",
     "check": "tsc"
   },
   "author": "",
@@ -23,6 +30,7 @@
     "typegraphql-prisma": "^0.21.4"
   },
   "dependencies": {
-    "@prisma/client": "^4.3.1"
+    "@prisma/client": "^4.3.1",
+    "concurrently": "^7.4.0"
   }
 }
