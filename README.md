@@ -39,7 +39,7 @@ A rough outline of the relationships looks like:
 
 ![WunderDate Tables](./assets/tables.png)
 
-Head over to the [schema]() to see how the tables are modeled.
+Head over to the [schema](https://github.com/glamboyosa/wunderdate/blob/main/prisma/schema.prisma) to see how the tables are modeled.
 
 ## Getting started with the app
 
@@ -48,7 +48,7 @@ In order to get started this app has a few requirements:
 - WunderGraph CLI.
 - A GitHub OAuth application.
 
-> _NOTE_ This demo uses npm.
+> _NOTE_: This demo uses npm.
 
 ### Installing the WunderGraph CLI
 
@@ -60,7 +60,7 @@ npm install -g @wundergraph/wunderctl
 
 Please follow the [official GitHub guide](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) to properly configure an OAuth application.
 
-> _NOTE_ For the authorization callback URL add: `http://localhost:9991/app/main/auth/cookie/callback/github` . This is necessary for WunderGraph to be able to authenticate successfully. Else, an error will occur.
+> _NOTE_: For the authorization callback URL add: `http://localhost:9991/app/main/auth/cookie/callback/github` . This is necessary for WunderGraph to be able to authenticate successfully. Else, an error will occur.
 
 ### Environment Variables
 
@@ -72,11 +72,11 @@ cp .env.example .env
 copy .env.example .env
 ```
 
-Fill in `GITHUB_CLIENT_SECRET` and `GITHUB_CLIENT_ID` with the values from the previous [section](https://github.com/glamboyosa/wunderdate)
+Fill in `GITHUB_CLIENT_SECRET` and `GITHUB_CLIENT_ID` with the values from the previous [section](https://github.com/glamboyosa/wunderdate#registering-a-github-oauth-application)
 
 `DATABASE_URL` will be used by Prisma as the database to read and write to. You can use your local database e.g. `"postgresql://admin:admin@localhost:54322/example?schema=public"` or you can use a serverless Postgres provider like [railway](https://railway.app)
 
-> _NOTE_ If you do use a local Postgres DB PLEASE ensure to create the database as Prisma expects that.
+> _NOTE_: If you do use a local Postgres DB PLEASE ensure to create the database as Prisma expects that.
 
 ## Installing dependencies
 
@@ -96,7 +96,7 @@ The next step is to migrate our tables and seed the DB with some data. For this,
 npm run migrate:seed
 ```
 
-> _NOTE_ If you would like to drop all tables, migrate and seed. Run: `npm run reset:seed` but this requires having run an initial migration.
+> _NOTE_: If you would like to drop all tables, migrate and seed. Run: `npm run reset:seed` but this requires having run an initial migration.
 
 ## Run the GraphQL services
 
