@@ -8,7 +8,6 @@
     "reset:seed": "npx prisma migrate reset && ts-node script.ts",
     "kill:nexus": "kill -9 $(lsof -t -i:4000)",
     "kill:tgql": "kill -9 $(lsof -t -i:8000)",
-    "dev": "npm run kill:nexus && npm run kill:tgql && concurrently \"npm run nexus\" \"npm run tgql\"",
     "kill:all": "npm run kill:nexus && npm run kill:tgql",
     "dev:nexus": "cd nexus && npm run dev",
     "dev:tgql": "cd GQL && npm run dev",
